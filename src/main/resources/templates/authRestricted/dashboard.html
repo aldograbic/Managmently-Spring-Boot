@@ -2,15 +2,26 @@
 <html lang="en">
   <head>
     <th:block th:insert="~{fragments/head :: head}"></th:block>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:src="@{js/dashboardCharts.js}" defer="defer"></script>
+
     <title>Dashboard | Managmently</title>
   </head>
   <body>
     <th:block th:insert="~{fragments/auth-header :: auth-header}"></th:block>
-    <main>
+    <main class="flex">
       <th:block
         th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
       ></th:block>
-      <div class="content"></div>
+      <div class="content flex-1 flex-col">
+        <h1>Dashboard</h1>
+        <div id="charts" class="grid grid-cols-2 w-96">
+          <canvas id="chart1"></canvas>
+          <canvas id="chart2"></canvas>
+          <canvas id="chart3"></canvas>
+          <canvas id="chart4"></canvas>
+        </div>
+      </div>
     </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>

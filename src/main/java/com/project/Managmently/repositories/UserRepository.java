@@ -9,4 +9,6 @@ public interface UserRepository {
     User findByEmail(String email);
 
     void saveUser(User user);
+
+    void contact(String name, String email, String message);
 }

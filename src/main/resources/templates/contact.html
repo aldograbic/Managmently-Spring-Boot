@@ -6,7 +6,61 @@
   </head>
   <body>
     <th:block th:insert="~{fragments/header :: header}"></th:block>
-    <main></main>
+    <main class="flex flex-col items-center">
+      <div class="content-regular">
+        <h1>Contact Us</h1>
+        <form action="/processContactUs" method="post" class="space-y-6">
+          <div class="relative">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="peer"
+              placeholder=""
+              autocomplete="name"
+            />
+            <label
+              for="name"
+              class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+              >Name</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="peer"
+              placeholder=""
+              autocomplete="email"
+            />
+            <label
+              for="email"
+              class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+              >E-mail address</label
+            >
+          </div>
+
+          <div class="relative">
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              class="peer resize-none"
+              placeholder=""
+            ></textarea>
+            <label
+              for="message"
+              class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-7 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+              >Message</label
+            >
+          </div>
+
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>
 </html>

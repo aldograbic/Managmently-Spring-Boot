@@ -39,4 +39,10 @@ public class JdbcUserRepository implements UserRepository {
         jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getCity(), user.getAddress(),
             user.getPhoneNumber(), user.getEmail(), user.getRoleId(), user.isEmailVerified(), user.getConfirmationToken());
     }
+
+    @Override
+    public void contact(String name, String email, String message) {
+        String sql = "INSERT INTO contact_messages(name, email, message) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, name, email, message);
+    }
 }
