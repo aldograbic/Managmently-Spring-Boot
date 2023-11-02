@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  body {
+    @apply min-h-screen flex flex-col;
+    font-family: "Nunito Sans", sans-serif;
+  }
+
+  .content {
+    @apply flex px-0 md:px-16;
+  }
+
+  .content-regular {
+    @apply w-full md:w-3/5;
+  }
+
+  h1 {
+    @apply text-3xl mb-8 text-blue-700 font-semibold;
+  }
+
+  h2 {
+    @apply text-2xl mb-4 pl-2 border-l-2 border-blue-700;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    @apply block px-2.5 pb-2.5 pt-4 w-full text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-700 focus:outline-none focus:ring-0 focus:border-blue-700;
+  }
+
+  input[type="text"] + label,
+  input[type="password"] + label,
+  input[type="email"] + label {
+    @apply absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 left-1;
+  }
+
+  input[type="submit"],
+  button,
+  .button {
+    @apply flex justify-center w-full px-4 py-2 h-12 bg-blue-700 text-white rounded-lg cursor-pointer shadow-md hover:bg-blue-800 transition-colors text-lg;
+  }
+
+  .selected {
+    @apply border-blue-700 bg-blue-200;
+  }
+}

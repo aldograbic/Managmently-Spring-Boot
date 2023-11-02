@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <th:block th:insert="~{fragments/head :: head}"></th:block>
+    <title>Login | Managmently</title>
+  </head>
+  <body class="min-h-screen">
+    <th:block th:insert="~{fragments/header :: header}"></th:block>
+    <main class="flex flex-col items-center">
+      <div class="mr-4">
+        <div class="md:flex items-center gap-4">
+          <div class="flex flex-col w-2/5 gap-8">
+            <img src="img/login-image-isometric.png" alt="Login page image" />
+          </div>
+          <div class="flex-1">
+            <h1>Login</h1>
+            <form action="/login" method="post" class="space-y-6">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  class="peer"
+                  placeholder=""
+                  autocomplete="username"
+                />
+                <label
+                  for="username"
+                  class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                  >Username</label
+                >
+              </div>
+
+              <div class="relative">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="peer"
+                  placeholder=""
+                />
+                <label
+                  for="password"
+                  class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                  >Password</label
+                >
+              </div>
+
+              <div>
+                <input type="submit" value="LOGIN" />
+              </div>
+            </form>
+            <div class="mt-6 text-lg w-max">
+              <p class="relative">
+                Not a member?
+                <a href="/registration" class="text-blue-700 font-semibold"
+                  >Sign Up &rarr;</a
+                >
+                <img
+                  src="img/circled-arrow.svg"
+                  alt=""
+                  class="absolute left-2/3 mt-4 stroke-0"
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+  </body>
+</html>

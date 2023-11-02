@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <th:block th:insert="~{fragments/head :: head}"></th:block>
+    <title>Managmently</title>
+  </head>
+  <body>
+    <th:block th:insert="~{fragments/header :: header}"></th:block>
+    <main class="flex justify-center relative">
+      <div class="content-regular flex items-center">
+        <div class="w-2/3 flex flex-col gap-8">
+          <p class="text-6xl">
+            Discover the Future of
+            <span class="text-blue-700">Property Management</span>
+          </p>
+          <a href="/login" class="button">Get Started</a>
+        </div>
+        <img src="img/rocket.svg" alt="" class="w-16" />
+        <img src="img/house-image-isometric.png" alt="" class="w-2/3" />
+      </div>
+    </main>
+    <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+  </body>
+</html>

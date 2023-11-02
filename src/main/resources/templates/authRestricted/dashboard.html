@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <th:block th:insert="~{fragments/head :: head}"></th:block>
+    <title>Dashboard | Managmently</title>
+  </head>
+  <body>
+    <th:block th:insert="~{fragments/auth-header :: auth-header}"></th:block>
+    <main>
+      <th:block
+        th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
+      ></th:block>
+      <div class="content"></div>
+    </main>
+    <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+  </body>
+</html>
