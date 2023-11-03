@@ -6,8 +6,13 @@
   </head>
   <body>
     <th:block th:insert="~{fragments/auth-header :: auth-header}"></th:block>
-    <main>
-      <div class="content"></div>
+    <main class="flex">
+      <th:block
+        th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
+      ></th:block>
+      <div class="content flex-1 flex-col">
+        <h1>Tenants</h1>
+      </div>
     </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>

@@ -6,8 +6,152 @@
   </head>
   <body>
     <th:block th:insert="~{fragments/auth-header :: auth-header}"></th:block>
-    <main>
-      <div class="content"></div>
+    <main class="flex">
+      <th:block
+        th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
+      ></th:block>
+      <div class="content flex-1 flex-col">
+        <h1>Properties</h1>
+        <div x-data="{ addProperty: false }">
+          <a
+            href="javascript:void(0)"
+            class="button flex items-center justify-around w-48"
+            @click="addProperty =!addProperty"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+            New property</a
+          >
+          <div
+            x-show="addProperty"
+            class="fixed inset-0 z-50 overflow-y-auto"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div
+              class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0"
+            >
+              <div
+                x-cloak
+                @click="addProperty = false"
+                x-show="addProperty"
+                x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-200 transform"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
+                aria-hidden="true"
+              ></div>
+
+              <div
+                x-cloak
+                x-show="addProperty"
+                x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave="transition ease-in duration-200 transform"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+              >
+                <div class="flex items-center justify-between">
+                  <h2 class="text-xl font-semibold">Add new property</h2>
+                  <a
+                    href="javascript:void(0)"
+                    @click="addProperty = false"
+                    class="text-gray-600 focus:outline-none hover:text-gray-700"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </a>
+                </div>
+
+                <p class="mt-2 text-sm text-gray-500">
+                  Add basic information of your property to the list of
+                  properties.
+                </p>
+
+                <form class="mt-5">
+                  <div class="relative mb-4">
+                    <input
+                      type="text"
+                      id="propertyName"
+                      name="propertyName"
+                      class="peer"
+                      placeholder=""
+                    />
+                    <label
+                      for="propertyName"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >Property name</label
+                    >
+                  </div>
+
+                  <div class="relative mb-4">
+                    <input
+                      type="text"
+                      id="propertyType"
+                      name="propertyType"
+                      class="peer"
+                      placeholder=""
+                    />
+                    <label
+                      for="propertyType"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >Property type</label
+                    >
+                  </div>
+
+                  <div class="relative">
+                    <input
+                      type="text"
+                      id="propertyLocation"
+                      name="propertyLocation"
+                      class="peer"
+                      placeholder=""
+                    />
+                    <label
+                      for="propertyLocation"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >Property location</label
+                    >
+                  </div>
+
+                  <div class="flex justify-end mt-8">
+                    <input type="submit" value="Submit" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>

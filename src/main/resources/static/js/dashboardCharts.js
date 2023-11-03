@@ -46,7 +46,7 @@ new Chart(chart2, {
 });
 
 new Chart(chart3, {
-  type: "line",
+  type: "doughnut",
   data: {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
