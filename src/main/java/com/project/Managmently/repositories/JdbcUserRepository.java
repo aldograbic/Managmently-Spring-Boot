@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.project.Managmently.classes.Contact;
 import com.project.Managmently.classes.User;
 
 @Repository
@@ -44,5 +45,11 @@ public class JdbcUserRepository implements UserRepository {
     public void contact(String name, String email, String message) {
         String sql = "INSERT INTO contact_messages(name, email, message) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, name, email, message);
+    }
+
+    @Override
+    public void insertContact(Contact contact) {
+        String sql = "INSERT INTO user_contact_info(first_name, last_name, email, phone_number, organization, job_title, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, contact);
     }
 }

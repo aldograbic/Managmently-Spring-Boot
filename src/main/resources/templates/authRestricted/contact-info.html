@@ -12,6 +12,205 @@
       ></th:block>
       <div class="content flex-1 flex-col">
         <h1>Contacts</h1>
+        <div x-data="{ addContact: false }">
+          <a
+            href="javascript:void(0)"
+            class="button flex items-center justify-around w-48"
+            @click="addContact =!addContact"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+            New contact</a
+          >
+          <div
+            x-show="addContact"
+            class="fixed inset-0 z-50 overflow-y-auto"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+            x-cloak
+          >
+            <div
+              class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0"
+            >
+              <div
+                x-cloak
+                @click="addContact = false"
+                x-show="addContact"
+                x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-200 transform"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
+                aria-hidden="true"
+              ></div>
+
+              <div
+                x-cloak
+                x-show="addContact"
+                x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave="transition ease-in duration-200 transform"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+              >
+                <div class="flex items-center justify-between">
+                  <h2 class="text-xl font-semibold">Add new contact</h2>
+                  <a
+                    href="javascript:void(0)"
+                    @click="addContact = false"
+                    class="text-gray-600 focus:outline-none hover:text-gray-700"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </a>
+                </div>
+
+                <p class="mt-2 text-sm text-gray-500">
+                  Insert the new contact's details into your contact list.
+                </p>
+
+                <form th:action="@{/insertContact}" method="post" class="mt-5">
+                  <div class="relative mb-4">
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      class="peer"
+                      placeholder=""
+                    />
+                    <label
+                      for="firstName"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >First name</label
+                    >
+                  </div>
+
+                  <div class="relative mb-4">
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      class="peer"
+                      placeholder=""
+                    />
+                    <label
+                      for="lastName"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >Last name</label
+                    >
+                  </div>
+
+                  <div class="relative mb-4">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="peer"
+                      placeholder=""
+                    />
+                    <label
+                      for="email"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >E-mail address</label
+                    >
+                  </div>
+
+                  <div class="relative mb-4">
+                    <input
+                      type="text"
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      class="peer"
+                      placeholder=""
+                    />
+                    <label
+                      for="phoneNumber"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >Phone number</label
+                    >
+                  </div>
+
+                  <div class="relative mb-4">
+                    <input
+                      type="text"
+                      id="organization"
+                      name="organization"
+                      class="peer"
+                      placeholder=""
+                    />
+                    <label
+                      for="organization"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >Organization</label
+                    >
+                  </div>
+
+                  <div class="relative mb-4">
+                    <input
+                      type="text"
+                      id="jobTitle"
+                      name="jobTitle"
+                      class="peer"
+                      placeholder=""
+                    />
+                    <label
+                      for="jobTitle"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >Job Title</label
+                    >
+                  </div>
+
+                  <div class="relative">
+                    <textarea
+                      id="notes"
+                      name="notes"
+                      rows="5"
+                      class="peer resize-none"
+                      placeholder=""
+                    ></textarea>
+                    <label
+                      for="notes"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-7 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >Notes</label
+                    >
+                  </div>
+
+                  <div class="flex justify-end mt-8">
+                    <input type="submit" value="Submit" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>

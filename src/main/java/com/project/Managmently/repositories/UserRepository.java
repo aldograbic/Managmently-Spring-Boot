@@ -1,5 +1,6 @@
 package com.project.Managmently.repositories;
 
+import com.project.Managmently.classes.Contact;
 import com.project.Managmently.classes.User;
 
 public interface UserRepository {
@@ -11,4 +12,6 @@ public interface UserRepository {
     void saveUser(User user);
 
     void contact(String name, String email, String message);
+
+    void insertContact(Contact contact);
 }

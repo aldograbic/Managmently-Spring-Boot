@@ -47,4 +47,8 @@
   .selected {
     @apply border-blue-700 bg-blue-200;
   }
+
+  [x-cloak] {
+    @apply hidden;
+  }
 }
