@@ -1,5 +1,7 @@
 package com.project.Managmently.controllers.authRestricted;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,6 +30,9 @@ public class ContactInfoController {
         User user = userRepository.findByUsername(username);
         model.addAttribute("user", user);
 
+        List<Contact> userContacts = userRepository.getContactsForUserById(user.getId());
+        model.addAttribute("userContacts", userContacts);
+
         return "authRestricted/contact-info";
     }
 
@@ -39,12 +44,15 @@ public class ContactInfoController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         int userId = userRepository.findByUsername(username).getId();
-
         contact.setUserId(userId);
 
-        userRepository.insertContact(contact);
-
-        redirectAttributes.addFlashAttribute("successMessage", "Contact successfully added.");
+        try {
+            userRepository.insertContact(contact);
+            redirectAttributes.addFlashAttribute("successMessage", "Contact successfully added.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the contact. Try again.");
+        }
+        
         return "redirect:/contact-info";
         
     }

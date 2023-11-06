@@ -50,6 +50,22 @@ public class JdbcUserRepository implements UserRepository {
     @Override
     public void insertContact(Contact contact) {
         String sql = "INSERT INTO user_contact_info(first_name, last_name, email, phone_number, organization, job_title, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, contact);
+        
+        jdbcTemplate.update(sql, 
+            contact.getFirstName(),
+            contact.getLastName(),
+            contact.getEmail(),
+            contact.getPhoneNumber(),
+            contact.getOrganization(),
+            contact.getJobTitle(),
+            contact.getNotes(),
+            contact.getUserId()
+        );
+    }
+
+    @Override
+    public List<Contact> getContactsForUserById(int userId) {
+        String sql = "SELECT * FROM user_contact_info WHERE user_id = ?";
+        return jdbcTemplate.query(sql, new ContactRowMapper(), userId);
     }
 }

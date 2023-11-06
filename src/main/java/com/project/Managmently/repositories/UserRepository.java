@@ -1,5 +1,7 @@
 package com.project.Managmently.repositories;
 
+import java.util.List;
+
 import com.project.Managmently.classes.Contact;
 import com.project.Managmently.classes.User;
 
@@ -14,4 +16,6 @@ public interface UserRepository {
     void contact(String name, String email, String message);
 
     void insertContact(Contact contact);
+
+    List<Contact> getContactsForUserById(int userId);
 }
