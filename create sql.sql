@@ -48,3 +48,19 @@ CREATE TABLE `user_contact_info` (
   CONSTRAINT `user_contact_info_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `user_properties` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `description` text,
+  `size` double DEFAULT NULL,
+  `bedrooms` int DEFAULT NULL,
+  `bathrooms` int DEFAULT NULL,
+  `price` decimal(15,2) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `user_properties_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -752,10 +752,6 @@ input[type="submit"]:hover,
   z-index: 50;
 }
 
-.row-span-3 {
-  grid-row: span 3 / span 3;
-}
-
 .-mx-3 {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
@@ -1035,6 +1031,11 @@ input[type="submit"]:hover,
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded-t-lg {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 
 .border {
@@ -1453,6 +1454,10 @@ input[type="submit"]:hover,
 
   .md\:h-48 {
     height: 12rem;
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:items-center {
