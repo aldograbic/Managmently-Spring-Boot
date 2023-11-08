@@ -28,5 +28,12 @@ public class JdbcPropertyRepository implements PropertyRepository {
         String sql = "SELECT * FROM user_properties WHERE user_id = ?";
         return jdbcTemplate.query(sql, new PropertyRowMapper(), userId);
     }
+
+    @Override
+    public void deleteProperty(int id) {
+        String sql = "DELETE FROM user_properties WHERE id = ?";
+        
+        jdbcTemplate.update(sql, id);
+    }
     
 }

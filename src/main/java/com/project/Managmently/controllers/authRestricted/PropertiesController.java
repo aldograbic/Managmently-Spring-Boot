@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,6 +55,20 @@ public class PropertiesController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the property. Try again.");
         }
+        
+        return "redirect:/properties";
+    }
+
+    @PostMapping("/deleteProperty/{id}")
+    public String deleteProperty(@PathVariable("id") int id,
+                                RedirectAttributes redirectAttributes) {
+
+        try {
+            propertyRepository.deleteProperty(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Property successfully deleted.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the property. Try again.");
+        }                            
         
         return "redirect:/properties";
     }

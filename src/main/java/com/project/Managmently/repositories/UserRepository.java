@@ -17,5 +17,7 @@ public interface UserRepository {
 
     void insertContact(Contact contact);
 
+    void deleteContact(int id);
+
     List<Contact> getContactsForUserById(int userId);
 }

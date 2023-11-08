@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,6 +55,19 @@ public class ContactInfoController {
         }
         
         return "redirect:/contact-info";
-        
+    }
+
+    @PostMapping("/deleteContact/{id}")
+    public String deleteContact(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
+
+        try {
+            userRepository.deleteContact(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Contact successfully deleted.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the contact. Try again.");
+
+        }
+
+        return "redirect:/contact-info";
     }
 }

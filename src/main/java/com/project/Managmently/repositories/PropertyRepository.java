@@ -9,4 +9,6 @@ public interface PropertyRepository {
     void insertProperty(Property property);
 
     List<Property> getPropertiesForUserById(int userId);
+
+    void deleteProperty(int id);
 }

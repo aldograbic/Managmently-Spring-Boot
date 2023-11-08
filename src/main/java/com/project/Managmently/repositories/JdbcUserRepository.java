@@ -62,6 +62,13 @@ public class JdbcUserRepository implements UserRepository {
             contact.getUserId()
         );
     }
+    
+    @Override
+    public void deleteContact(int id) {
+        String sql = "DELETE FROM user_contact_info WHERE id = ?";
+        
+        jdbcTemplate.update(sql, id);
+    }
 
     @Override
     public List<Contact> getContactsForUserById(int userId) {

@@ -281,7 +281,10 @@
                         <p>This action cannot be undone.</p>
                       </div>
                       <div class="justify-around items-center mt-4 space-y-4">
-                        <form action="/deleteProperty" method="post">
+                        <form
+                          th:action="@{'/deleteProperty/' + ${property.id}}"
+                          method="post"
+                        >
                           <input
                             type="submit"
                             value="Delete"
