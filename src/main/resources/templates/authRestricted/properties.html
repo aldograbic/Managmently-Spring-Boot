@@ -115,13 +115,18 @@
                   </div>
 
                   <div class="relative mb-4">
-                    <input
+                    <select
                       type="text"
                       id="type"
                       name="type"
                       class="peer"
                       placeholder=""
-                    />
+                    >
+                      <option value="" selected disabled>Select a Type</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Condominium">Condominium</option>
+                    </select>
                     <label
                       for="type"
                       class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"

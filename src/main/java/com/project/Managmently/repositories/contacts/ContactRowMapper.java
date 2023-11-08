@@ -1,4 +1,4 @@
-package com.project.Managmently.repositories;
+package com.project.Managmently.repositories.contacts;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

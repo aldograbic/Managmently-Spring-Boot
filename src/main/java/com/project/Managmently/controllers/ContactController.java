@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.project.Managmently.repositories.UserRepository;
+import com.project.Managmently.repositories.user.UserRepository;
 
 @Controller
 public class ContactController {

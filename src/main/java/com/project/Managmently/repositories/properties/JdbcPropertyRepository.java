@@ -1,4 +1,4 @@
-package com.project.Managmently.repositories;
+package com.project.Managmently.repositories.properties;
 
 import java.util.List;
 
@@ -19,7 +19,6 @@ public class JdbcPropertyRepository implements PropertyRepository {
     @Override
     public void insertProperty(Property property) {
         String sql = "INSERT INTO user_properties(name, type, location, user_id) VALUES (?, ?, ?, ?)";
-
         jdbcTemplate.update(sql, property.getName(), property.getType(), property.getLocation(), property.getUserId());
     }
 
@@ -32,8 +31,12 @@ public class JdbcPropertyRepository implements PropertyRepository {
     @Override
     public void deleteProperty(int id) {
         String sql = "DELETE FROM user_properties WHERE id = ?";
-        
         jdbcTemplate.update(sql, id);
     }
-    
+
+    @Override
+    public int getPropertyIdByName(String name) {
+        String sql = "SELECT id FROM user_properties WHERE name = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, name);
+    }
 }

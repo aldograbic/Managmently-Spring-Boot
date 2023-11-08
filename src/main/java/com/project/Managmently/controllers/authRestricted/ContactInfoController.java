@@ -15,13 +15,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.Managmently.classes.Contact;
 import com.project.Managmently.classes.User;
-import com.project.Managmently.repositories.UserRepository;
+import com.project.Managmently.repositories.contacts.ContactRepository;
+import com.project.Managmently.repositories.user.UserRepository;
 
 @Controller
 public class ContactInfoController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ContactRepository contactRepository;
     
     @GetMapping("/contact-info")
     public String getContactInfoPage(Model model) {
@@ -31,7 +35,7 @@ public class ContactInfoController {
         User user = userRepository.findByUsername(username);
         model.addAttribute("user", user);
 
-        List<Contact> userContacts = userRepository.getContactsForUserById(user.getId());
+        List<Contact> userContacts = contactRepository.getContactsForUserById(user.getId());
         model.addAttribute("userContacts", userContacts);
 
         return "authRestricted/contact-info";
@@ -39,7 +43,6 @@ public class ContactInfoController {
 
     @PostMapping("/insertContact")
     public String insertContact(@ModelAttribute Contact contact,
-                                Model model,
                                 RedirectAttributes redirectAttributes) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -48,7 +51,7 @@ public class ContactInfoController {
         contact.setUserId(userId);
 
         try {
-            userRepository.insertContact(contact);
+            contactRepository.insertContact(contact);
             redirectAttributes.addFlashAttribute("successMessage", "Contact successfully added.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the contact. Try again.");
@@ -61,7 +64,7 @@ public class ContactInfoController {
     public String deleteContact(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
 
         try {
-            userRepository.deleteContact(id);
+            contactRepository.deleteContact(id);
             redirectAttributes.addFlashAttribute("successMessage", "Contact successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the contact. Try again.");

@@ -586,6 +586,8 @@ h2 {
 input[type="text"],
   input[type="password"],
   input[type="email"],
+  input[type="date"],
+  select,
   textarea {
   display: block;
   width: 100%;
@@ -608,6 +610,8 @@ input[type="text"],
 input[type="text"]:focus,
   input[type="password"]:focus,
   input[type="email"]:focus,
+  input[type="date"]:focus,
+  select:focus,
   textarea:focus {
   --tw-border-opacity: 1;
   border-color: rgb(29 78 216 / var(--tw-border-opacity));
@@ -621,6 +625,8 @@ input[type="text"]:focus,
 :is(.dark input[type="text"]),:is(.dark 
   input[type="password"]),:is(.dark 
   input[type="email"]),:is(.dark 
+  input[type="date"]),:is(.dark 
+  select),:is(.dark 
   textarea) {
   --tw-border-opacity: 1;
   border-color: rgb(75 85 99 / var(--tw-border-opacity));
@@ -631,6 +637,8 @@ input[type="text"]:focus,
 :is(.dark input[type="text"]:focus),:is(.dark 
   input[type="password"]:focus),:is(.dark 
   input[type="email"]:focus),:is(.dark 
+  input[type="date"]:focus),:is(.dark 
+  select:focus),:is(.dark 
   textarea:focus) {
   --tw-border-opacity: 1;
   border-color: rgb(29 78 216 / var(--tw-border-opacity));
@@ -639,6 +647,8 @@ input[type="text"]:focus,
 input[type="text"] + label,
   input[type="password"] + label,
   input[type="email"] + label,
+  input[type="date"] + label,
+  select + label,
   textarea + label {
   position: absolute;
   top: 0.5rem;
@@ -663,6 +673,8 @@ input[type="text"] + label,
 :is(.dark input[type="text"] + label),:is(.dark 
   input[type="password"] + label),:is(.dark 
   input[type="email"] + label),:is(.dark 
+  input[type="date"] + label),:is(.dark 
+  select + label),:is(.dark 
   textarea + label) {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
@@ -1354,11 +1366,6 @@ input[type="submit"]:hover,
 .hover\:bg-gray-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-red-800:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 
 .hover\:text-gray-700:hover {

@@ -1,4 +1,4 @@
-package com.project.Managmently.repositories;
+package com.project.Managmently.repositories.properties;
 
 import java.util.List;
 
@@ -11,4 +11,6 @@ public interface PropertyRepository {
     List<Property> getPropertiesForUserById(int userId);
 
     void deleteProperty(int id);
+
+    int getPropertyIdByName(String name);
 }

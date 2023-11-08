@@ -27,6 +27,8 @@
   input[type="text"],
   input[type="password"],
   input[type="email"],
+  input[type="date"],
+  select,
   textarea {
     @apply block px-2.5 pb-2.5 pt-4 w-full text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-700 focus:outline-none focus:ring-0 focus:border-blue-700;
   }
@@ -34,6 +36,8 @@
   input[type="text"] + label,
   input[type="password"] + label,
   input[type="email"] + label,
+  input[type="date"] + label,
+  select + label,
   textarea + label {
     @apply absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 left-1;
   }

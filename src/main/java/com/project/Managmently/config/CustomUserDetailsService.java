@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.stereotype.Service;
 
 import com.project.Managmently.classes.User;
-import com.project.Managmently.repositories.UserRepository;
+import com.project.Managmently.repositories.user.UserRepository;
 
 @Service
 public class CustomUserDetailsService extends SavedRequestAwareAuthenticationSuccessHandler implements UserDetailsService {
