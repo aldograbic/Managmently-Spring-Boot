@@ -16,19 +16,31 @@ public class JdbcTenantRepository implements TenantRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void insertTenant(Tenant tenant) {
+    @Override
+    public void insertTenant(Tenant tenant, int userId) {
         String sql = "INSERT INTO user_tenants(first_name, last_name, lease_start_date, lease_end_date, rent_amount, security_deposit_amount, property_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, tenant.getFirstName(), tenant.getLastName(), tenant.getLeaseStartDate(), tenant.getLeaseEndDate(), tenant.getRentAmount(), tenant.getSecurityDepositAmount(), tenant.getPropertyId());
+
+        int tenantId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        String initialPaymentSql = "INSERT INTO user_payment_records(payment_date, payment_amount, tenant_id, user_id) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(initialPaymentSql, tenant.getLeaseStartDate(), tenant.getRentAmount(), tenantId, userId);
     }
 
+    @Override
     public void deleteTenant(int id) {
         String sql = "DELETE FROM user_tenants WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
 
+    @Override
     public List<Tenant> getTenantsForUserByPropertyId(int propertyId) {
         String sql = "SELECT * FROM user_tenants WHERE property_id = ?";
         return jdbcTemplate.query(sql, new TenantRowMapper(), propertyId);
     }
     
+    @Override
+    public Tenant getTenantById(int id) {
+        String sql = "SELECT * FROM user_tenants where id = ?";
+        return jdbcTemplate.queryForObject(sql, new TenantRowMapper(), id);
+    }
 }

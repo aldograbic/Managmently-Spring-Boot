@@ -2,6 +2,8 @@ package com.project.Managmently.classes;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tenant {
 
@@ -17,6 +19,8 @@ public class Tenant {
     private BigDecimal rentAmount;
     private BigDecimal securityDepositAmount;
     private int propertyId;
+
+    private List<PaymentRecord> paymentRecords = new ArrayList<>();
 
     public Tenant() {}
 
@@ -130,6 +134,14 @@ public class Tenant {
 
     public void setPropertyId(int propertyId) {
         this.propertyId = propertyId;
+    }
+
+    public List<PaymentRecord> getPaymentRecords() {
+        return paymentRecords;
+    }
+
+    public void setPaymentRecords(List<PaymentRecord> paymentRecords) {
+        this.paymentRecords = paymentRecords;
     }
 
     

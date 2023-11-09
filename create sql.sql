@@ -83,3 +83,15 @@ CREATE TABLE `user_tenants` (
   CONSTRAINT `user_tenants_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `user_properties` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `user_payment_records` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `payment_date` date DEFAULT NULL,
+  `payment_amount` decimal(10,2) DEFAULT NULL,
+  `tenant_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tenant_id` (`tenant_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `user_payment_records_ibfk_1` FOREIGN KEY (`tenant_id`) REFERENCES `user_tenants` (`id`),
+  CONSTRAINT `user_payment_records_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.Managmently.classes.PaymentRecord;
 import com.project.Managmently.classes.Property;
 import com.project.Managmently.classes.Tenant;
 import com.project.Managmently.classes.User;
@@ -63,16 +65,36 @@ public class TenantsController {
                             @RequestParam("property") String propertyName,
                             RedirectAttributes redirectAttributes) {
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        int userId = userRepository.findByUsername(username).getId();
+
         int propertyId = propertyRepository.getPropertyIdByName(propertyName);
         tenant.setPropertyId(propertyId);
 
         try {
-            tenantRepository.insertTenant(tenant);
+            PaymentRecord initialPayment = new PaymentRecord(tenant.getLeaseStartDate(), tenant.getRentAmount(), tenant.getId(), userId);
+            tenant.getPaymentRecords().add(initialPayment);
+
+            tenantRepository.insertTenant(tenant, userId);
             redirectAttributes.addFlashAttribute("successMessage", "Tenant successfully added.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the tenant. Try again.");
         }
 
+        return "redirect:/tenants";
+    }
+
+    @PostMapping("/deleteTenant/{id}")
+    public String deleteTenant(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
+
+        try {
+            tenantRepository.deleteTenant(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Tenant successfully deleted.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the tenant. Try again.");
+        }                            
+        
         return "redirect:/tenants";
     }
 }

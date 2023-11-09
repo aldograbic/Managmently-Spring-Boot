@@ -6,9 +6,11 @@ import com.project.Managmently.classes.Tenant;
 
 public interface TenantRepository {
     
-    void insertTenant(Tenant tenant);
+    void insertTenant(Tenant tenant, int userId);
 
     void deleteTenant(int id);
 
     List<Tenant> getTenantsForUserByPropertyId(int propertyId);
+
+    Tenant getTenantById(int id);
 }
