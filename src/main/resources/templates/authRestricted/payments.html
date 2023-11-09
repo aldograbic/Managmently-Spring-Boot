@@ -5,14 +5,20 @@
     <title>Payments | Managmently</title>
   </head>
   <body>
-    <th:block th:insert="~{fragments/auth-header :: auth-header}"></th:block>
-    <main class="flex">
+    <main class="flex bg-gray-50">
       <th:block
         th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
       ></th:block>
       <div class="content flex-1 flex-col">
+        <th:block
+          th:insert="~{fragments/auth-header :: auth-header}"
+        ></th:block>
         <h1>Payments</h1>
-        <div class="overflow-hidden rounded-lg border border-gray-200">
+        <div th:if="${paymentRecords.isEmpty()}">No payments yet</div>
+        <div
+          th:unless="${paymentRecords.isEmpty()}"
+          class="overflow-hidden rounded-lg border border-gray-200"
+        >
           <table class="w-full border-collapse text-left text-gray-500">
             <thead class="bg-gray-50">
               <tr>
@@ -40,9 +46,34 @@
                 ></td>
                 <td class="px-6 py-4" th:text="${payment.paymentDate}"></td>
                 <td class="px-6 py-4" th:text="${payment.paymentAmount}"></td>
-                <td class="px-6 py-4">Status</td>
+                <td class="px-6 py-4" id="statusCell">
+                  <span
+                    th:if="${payment.status == 'Pending'}"
+                    th:text="${payment.status}"
+                    class="border p-2 rounded-lg bg-gray-100"
+                  ></span>
+                  <span
+                    th:if="${payment.status == 'Overdue'}"
+                    th:text="${payment.status}"
+                    class="border p-2 rounded-lg bg-red-100"
+                  ></span>
+                  <span
+                    th:if="${payment.status == 'Complete'}"
+                    th:text="${payment.status}"
+                    class="border p-2 rounded-lg bg-green-100"
+                  ></span>
+                </td>
+                <td class="hidden">
+                  <select name="status" class="w-fit">
+                    <option value="Pending">Pending</option>
+                    <option value="Complete">Complete</option>
+                    <option value="Overdue">Overdue</option>
+                  </select>
+                </td>
+
                 <td>
                   <svg
+                    id="editIcon"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -56,6 +87,7 @@
                       d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
                     />
                   </svg>
+                  <button id="updatePayment" class="hidden">Update</button>
                 </td>
               </tr>
             </tbody>
@@ -64,5 +96,26 @@
       </div>
     </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+    <script>
+      function toggleStatus() {
+        const statusCell = document.getElementById("statusCell");
+        const statusInput = document.getElementById("status");
+        const updateButton = document.getElementById("updatePayment");
+        const editIcon = document.getElementById("editIcon");
+
+        if (statusInput.classList.contains("hidden")) {
+          statusInput.classList.remove("hidden");
+          updateButton.classList.remove("hidden");
+          editIcon.classList.add("hidden");
+        } else {
+          statusInput.classList.add("hidden");
+          updateButton.classList.add("hidden");
+          editIcon.classList.remove("hidden");
+        }
+      }
+
+      const editIcon = document.getElementById("editIcon");
+      editIcon.onclick = toggleStatus;
+    </script>
   </body>
 </html>

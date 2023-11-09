@@ -73,8 +73,10 @@ public class TenantsController {
         tenant.setPropertyId(propertyId);
 
         try {
-            PaymentRecord initialPayment = new PaymentRecord(tenant.getLeaseStartDate(), tenant.getRentAmount(), tenant.getId(), userId);
+            PaymentRecord initialPayment = new PaymentRecord(tenant.getLeaseStartDate(), tenant.getRentAmount(), "Pending", tenant.getId(), userId);
+            PaymentRecord initialSecurityDepositPayment = new PaymentRecord(tenant.getLeaseStartDate(), tenant.getSecurityDepositAmount(), "Pending", tenant.getId(), userId);
             tenant.getPaymentRecords().add(initialPayment);
+            tenant.getPaymentRecords().add(initialSecurityDepositPayment);
 
             tenantRepository.insertTenant(tenant, userId);
             redirectAttributes.addFlashAttribute("successMessage", "Tenant successfully added.");

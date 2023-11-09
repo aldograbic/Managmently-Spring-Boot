@@ -7,6 +7,7 @@ public class PaymentRecord {
     private int id;
     private LocalDate paymentDate;
     private BigDecimal paymentAmount;
+    private String status;
     private int tenantId;
     private int userId;
 
@@ -14,9 +15,10 @@ public class PaymentRecord {
 
     public PaymentRecord() {}
 
-    public PaymentRecord(LocalDate paymentDate, BigDecimal paymentAmount, int tenantId, int userId) {
+    public PaymentRecord(LocalDate paymentDate, BigDecimal paymentAmount, String status, int tenantId, int userId) {
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;
+        this.status = status;
         this.tenantId = tenantId;
         this.userId = userId;
     }
@@ -45,6 +47,14 @@ public class PaymentRecord {
         this.paymentAmount = paymentAmount;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public int getTenantId() {
         return tenantId;
     }
@@ -68,6 +78,4 @@ public class PaymentRecord {
     public void setTenant(Tenant tenant) {
         this.tenant = tenant;
     }
-
-    
 }

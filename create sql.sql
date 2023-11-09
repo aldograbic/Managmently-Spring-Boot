@@ -85,8 +85,9 @@ CREATE TABLE `user_tenants` (
 
 CREATE TABLE `user_payment_records` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `payment_date` date DEFAULT NULL,
-  `payment_amount` decimal(10,2) DEFAULT NULL,
+  `payment_date` date NOT NULL,
+  `payment_amount` decimal(10,2) NOT NULL,
+  `status` varchar(20) NOT NULL,
   `tenant_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),

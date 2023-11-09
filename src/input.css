@@ -4,12 +4,16 @@
 
 @layer components {
   body {
-    @apply min-h-screen flex flex-col;
+    @apply flex flex-col;
     font-family: "Nunito Sans", sans-serif;
   }
 
+  main {
+    @apply min-h-screen;
+  }
+
   .content {
-    @apply flex px-0 md:px-16;
+    @apply flex px-0 md:px-4 border rounded-lg m-1 bg-white;
   }
 
   .content-regular {

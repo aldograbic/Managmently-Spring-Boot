@@ -5,12 +5,14 @@
     <title>Tenants | Managmently</title>
   </head>
   <body>
-    <th:block th:insert="~{fragments/auth-header :: auth-header}"></th:block>
-    <main class="flex">
+    <main class="flex bg-gray-50">
       <th:block
         th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
       ></th:block>
       <div class="content flex-1 flex-col">
+        <th:block
+          th:insert="~{fragments/auth-header :: auth-header}"
+        ></th:block>
         <h1>Tenants</h1>
         <div x-data="{ addTenant: false }">
           <a

@@ -25,7 +25,7 @@ new Chart(chart1, {
 });
 
 new Chart(chart2, {
-  type: "line",
+  type: "bar",
   data: {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [

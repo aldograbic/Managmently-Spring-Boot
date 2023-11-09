@@ -31,6 +31,7 @@ public class PaymentRowMapper implements RowMapper<PaymentRecord> {
         }
 
         paymentRecord.setPaymentAmount(rs.getBigDecimal("payment_amount"));
+        paymentRecord.setStatus(rs.getString("status"));
         paymentRecord.setTenantId(rs.getInt("tenant_id")); 
         paymentRecord.setUserId(rs.getInt("user_id"));
 

@@ -2,15 +2,17 @@
 <html lang="en">
   <head>
     <th:block th:insert="~{fragments/head :: head}"></th:block>
-    <title>Contact Information | Managmently</title>
+    <title>Contacts | Managmently</title>
   </head>
   <body>
-    <th:block th:insert="~{fragments/auth-header :: auth-header}"></th:block>
-    <main class="flex">
+    <main class="flex bg-gray-50">
       <th:block
         th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
       ></th:block>
       <div class="content flex-1 flex-col">
+        <th:block
+          th:insert="~{fragments/auth-header :: auth-header}"
+        ></th:block>
         <h1>Contacts</h1>
         <div x-data="{ addContact: false }">
           <a
