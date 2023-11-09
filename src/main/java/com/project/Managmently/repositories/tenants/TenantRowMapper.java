@@ -21,14 +21,12 @@ public class TenantRowMapper implements RowMapper<Tenant> {
         tenant.setPhoneNumber(rs.getString("phone_number"));
         tenant.setEmail(rs.getString("email"));
 
-        // Convert java.sql.Date to LocalDate
         Date leaseStartDateSql = rs.getDate("lease_start_date");
         if (leaseStartDateSql != null) {
             LocalDate leaseStartDate = leaseStartDateSql.toLocalDate();
             tenant.setLeaseStartDate(leaseStartDate);
         }
 
-        // Convert java.sql.Date to LocalDate
         Date leaseEndDateSql = rs.getDate("lease_end_date");
         if (leaseEndDateSql != null) {
             LocalDate leaseEndDate = leaseEndDateSql.toLocalDate();

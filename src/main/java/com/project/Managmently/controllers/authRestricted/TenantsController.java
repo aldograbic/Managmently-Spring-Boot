@@ -1,5 +1,8 @@
 package com.project.Managmently.controllers.authRestricted;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -41,6 +44,16 @@ public class TenantsController {
 
         List<Property> properties = propertyRepository.getPropertiesForUserById(user.getId());
         model.addAttribute("properties", properties);
+
+        Map<String, List<Tenant>> tenantsByProperty = properties.stream()
+            .collect(Collectors.toMap(
+                Property::getName,
+                property -> tenantRepository.getTenantsForUserByPropertyId(property.getId()),
+                (existingValue, newValue) -> existingValue,
+                LinkedHashMap::new
+            ));
+        model.addAttribute("tenantsByProperty", tenantsByProperty);
+
 
         return "authRestricted/tenants";
     }
