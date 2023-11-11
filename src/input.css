@@ -47,7 +47,6 @@
   }
 
   input[type="submit"],
-  button,
   .button {
     @apply flex justify-center w-full px-4 py-2 h-12 bg-blue-700 text-white rounded-lg cursor-pointer shadow-md hover:bg-blue-800 transition-colors text-lg;
   }

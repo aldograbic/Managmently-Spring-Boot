@@ -24,4 +24,10 @@ public class JdbcPaymentRepository implements PaymentRepository {
         String sql = "SELECT * FROM user_payment_records WHERE user_id = ?";
         return jdbcTemplate.query(sql, new PaymentRowMapper(tenantRepository), userId);
     }
+
+    @Override
+    public void updatePaymentStatus(PaymentRecord paymentRecord) {
+        String sql = "UPDATE user_payments SET status = ? WHERE id = ?";
+        jdbcTemplate.update(sql, paymentRecord.getStatus(), paymentRecord.getId());
+    }
 }

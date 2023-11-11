@@ -696,7 +696,6 @@ input[type="text"] + label,
 }
 
 input[type="submit"],
-  button,
   .button {
   display: flex;
   height: 3rem;
@@ -723,7 +722,6 @@ input[type="submit"],
 }
 
 input[type="submit"]:hover,
-  button:hover,
   .button:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
@@ -803,6 +801,10 @@ input[type="submit"]:hover,
 
 .z-50 {
   z-index: 50;
+}
+
+.float-left {
+  float: left;
 }
 
 .mx-2 {
@@ -1051,6 +1053,10 @@ input[type="submit"]:hover,
   flex-direction: column;
 }
 
+.place-content-center {
+  place-content: center;
+}
+
 .place-items-center {
   place-items: center;
 }
@@ -1235,6 +1241,10 @@ input[type="submit"]:hover,
 
 .stroke-0 {
   stroke-width: 0;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .p-1 {
