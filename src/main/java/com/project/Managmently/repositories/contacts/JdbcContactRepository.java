@@ -35,7 +35,6 @@ public class JdbcContactRepository implements ContactRepository {
     @Override
     public void deleteContact(int id) {
         String sql = "DELETE FROM user_contact_info WHERE id = ?";
-        
         jdbcTemplate.update(sql, id);
     }
 
@@ -45,4 +44,10 @@ public class JdbcContactRepository implements ContactRepository {
         return jdbcTemplate.query(sql, new ContactRowMapper(), userId);
     }
     
+    @Override
+    public void updateContact(Contact contact) {
+        String sql = "UPDATE user_contact_info SET first_name = ?, last_name = ?, email = ?, phone_number = ?, organization = ?, job_title = ?, notes = ? WHERE id = ?";
+        jdbcTemplate.update(sql, contact.getFirstName(), contact.getLastName(), contact.getEmail(), contact.getPhoneNumber(), contact.getOrganization(), contact.getJobTitle(),
+         contact.getNotes(), contact.getId());
+    }
 }

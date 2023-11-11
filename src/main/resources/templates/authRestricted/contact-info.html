@@ -37,7 +37,7 @@
           >
           <div
             x-show="addContact"
-            class="fixed inset-0 z-50 overflow-y-auto"
+            class="fixed inset-0 z-50"
             aria-labelledby="modal-title"
             role="dialog"
             aria-modal="true"
@@ -455,19 +455,20 @@
               </tr>
 
               <tr th:each="contact : ${userContacts}" x-show="updateContact">
-                <form method="post">
-                  <td class="flex">
+                <form action="/updateContact" method="post">
+                  <td class="flex m-2">
+                    <input type="hidden" name="id" th:value="${contact.id}" />
                     <input
                       type="text"
-                      name=""
-                      id=""
+                      name="firstName"
+                      id="firstName"
                       th:value="${contact.firstName}"
-                      class="h-10"
+                      class="h-10 mr-2"
                     />
                     <input
                       type="text"
-                      name=""
-                      id=""
+                      name="lastName"
+                      id="lastName"
                       th:value="${contact.lastName}"
                       class="h-10"
                     />
@@ -475,17 +476,18 @@
                   <td>
                     <input
                       type="email"
-                      name=""
-                      id=""
+                      name="email"
+                      id="email"
                       th:value="${contact.email}"
                       class="h-10"
+                      autocomplete="email"
                     />
                   </td>
                   <td>
                     <input
                       type="text"
-                      name=""
-                      id=""
+                      name="phoneNumber"
+                      id="phoneNumber"
                       th:value="${contact.phoneNumber}"
                       class="h-10"
                     />
@@ -493,17 +495,18 @@
                   <td>
                     <input
                       type="text"
-                      name=""
-                      id=""
+                      name="organization"
+                      id="organization"
                       th:value="${contact.organization}"
                       class="h-10"
+                      autocomplete="organization"
                     />
                   </td>
                   <td>
                     <input
                       type="text"
-                      name=""
-                      id=""
+                      name="jobTitle"
+                      id="jobTitle"
                       th:value="${contact.jobTitle}"
                       class="h-10"
                     />
@@ -511,8 +514,8 @@
                   <td>
                     <input
                       type="text"
-                      name=""
-                      id=""
+                      name="notes"
+                      id="notes"
                       th:value="${contact.notes}"
                       class="h-10"
                     />

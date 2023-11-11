@@ -11,4 +11,6 @@ public interface ContactRepository {
     void deleteContact(int id);
 
     List<Contact> getContactsForUserById(int userId);
+
+    void updateContact(Contact contact);
 }

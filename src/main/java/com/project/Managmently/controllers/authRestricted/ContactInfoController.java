@@ -73,4 +73,18 @@ public class ContactInfoController {
 
         return "redirect:/contact-info";
     }
+
+    @PostMapping("/updateContact")
+    public String updateContact(@ModelAttribute Contact contact, RedirectAttributes redirectAttributes) {
+        try {
+            contactRepository.updateContact(contact);
+            redirectAttributes.addFlashAttribute("successMessage", "Contact successfully updated.");
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the contact. Try again.");
+
+        }
+
+        return "redirect:/contact-info";
+    }
 }
