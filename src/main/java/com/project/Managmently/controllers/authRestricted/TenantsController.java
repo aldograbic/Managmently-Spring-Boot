@@ -99,4 +99,18 @@ public class TenantsController {
         
         return "redirect:/tenants";
     }
+
+    @PostMapping("/updateTenant")
+    public String updateContact(@ModelAttribute Tenant tenant, RedirectAttributes redirectAttributes) {
+        try {
+            tenantRepository.updateTenant(tenant);
+            redirectAttributes.addFlashAttribute("successMessage", "Tenant successfully updated.");
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the tenant. Try again.");
+
+        }
+
+        return "redirect:/tenants";
+    }
 }

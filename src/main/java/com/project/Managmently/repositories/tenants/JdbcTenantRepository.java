@@ -46,4 +46,10 @@ public class JdbcTenantRepository implements TenantRepository {
         String sql = "SELECT * FROM user_tenants where id = ?";
         return jdbcTemplate.queryForObject(sql, new TenantRowMapper(), id);
     }
+
+    @Override
+    public void updateTenant(Tenant tenant) {
+        String sql = "UPDATE user_tenants SET first_name = ?, last_name = ?, city = ?, address = ?, phone_number = ?, email = ?, lease_start_date = ?, lease_end_date = ?, rent_amount = ?, security_deposit_amount = ? WHERE id = ?";
+        jdbcTemplate.update(sql, tenant.getFirstName(), tenant.getLastName(), tenant.getCity(), tenant.getAddress(), tenant.getPhoneNumber(), tenant.getEmail(), tenant.getLeaseStartDate(), tenant.getLeaseEndDate(), tenant.getRentAmount(), tenant.getSecurityDepositAmount(), tenant.getId());
+    }
 }

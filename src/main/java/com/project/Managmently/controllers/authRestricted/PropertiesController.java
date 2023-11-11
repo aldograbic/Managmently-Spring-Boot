@@ -72,4 +72,18 @@ public class PropertiesController {
         
         return "redirect:/properties";
     }
+
+    @PostMapping("/updateProperty")
+    public String updateProperty(@ModelAttribute Property property, RedirectAttributes redirectAttributes) {
+        try {
+            propertyRepository.updateProperty(property);
+            redirectAttributes.addFlashAttribute("successMessage", "Property successfully updated.");
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the property. Try again.");
+
+        }
+
+        return "redirect:/properties";
+    }
 }

@@ -13,4 +13,6 @@ public interface PropertyRepository {
     void deleteProperty(int id);
 
     int getPropertyIdByName(String name);
+    
+    void updateProperty(Property property);
 }

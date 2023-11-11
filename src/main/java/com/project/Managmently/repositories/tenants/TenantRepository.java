@@ -13,4 +13,6 @@ public interface TenantRepository {
     List<Tenant> getTenantsForUserByPropertyId(int propertyId);
 
     Tenant getTenantById(int id);
+
+    void updateTenant(Tenant tenant);
 }

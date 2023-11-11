@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.project.Managmently.classes.Property;
+import com.project.Managmently.classes.Tenant;
 
 @Repository
 public class JdbcPropertyRepository implements PropertyRepository {
@@ -38,5 +39,11 @@ public class JdbcPropertyRepository implements PropertyRepository {
     public int getPropertyIdByName(String name) {
         String sql = "SELECT id FROM user_properties WHERE name = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, name);
+    }
+
+    @Override
+    public void updateProperty(Property property) {
+        String sql = "UPDATE user_properties SET name = ?, type = ?, location = ?, description = ?, size = ?, bedrooms = ?, bathrooms = ?, price = ?, status = ? WHERE id = ?";
+        jdbcTemplate.update(sql, property.getName(), property.getType(), property.getLocation(), property.getDescription(), property.getSize(), property.getBedrooms(), property.getBathrooms(), property.getPrice(), property.isStatus(), property.getId());
     }
 }
