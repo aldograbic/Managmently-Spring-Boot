@@ -803,10 +803,6 @@ input[type="submit"]:hover,
   z-index: 50;
 }
 
-.float-left {
-  float: left;
-}
-
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -1005,6 +1001,11 @@ input[type="submit"]:hover,
 
 .min-w-\[4rem\] {
   min-width: 4rem;
+}
+
+.min-w-fit {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
 }
 
 .max-w-xl {

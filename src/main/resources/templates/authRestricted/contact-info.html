@@ -303,8 +303,15 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-              <tr th:each="contact : ${userContacts}" class="hover:bg-gray-50">
+            <tbody
+              class="divide-y divide-gray-100 border-t border-gray-100"
+              x-data="{ updateContact: false}"
+            >
+              <tr
+                th:each="contact : ${userContacts}"
+                class="hover:bg-gray-50"
+                x-show="!updateContact"
+              >
                 <td
                   class="px-6 py-4"
                   th:text="${contact.firstName + ' ' + contact.lastName}"
@@ -316,6 +323,7 @@
                 <td class="px-6 py-4" th:text="${contact.notes}"></td>
                 <td>
                   <svg
+                    @click="updateContact = true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -444,6 +452,107 @@
                     </div>
                   </div>
                 </td>
+              </tr>
+
+              <tr th:each="contact : ${userContacts}" x-show="updateContact">
+                <form method="post">
+                  <td class="flex">
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      th:value="${contact.firstName}"
+                      class="h-10"
+                    />
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      th:value="${contact.lastName}"
+                      class="h-10"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="email"
+                      name=""
+                      id=""
+                      th:value="${contact.email}"
+                      class="h-10"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      th:value="${contact.phoneNumber}"
+                      class="h-10"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      th:value="${contact.organization}"
+                      class="h-10"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      th:value="${contact.jobTitle}"
+                      class="h-10"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      th:value="${contact.notes}"
+                      class="h-10"
+                    />
+                  </td>
+                  <td x-show="updateContact" x-cloak>
+                    <button type="submit">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M4.5 12.75l6 6 9-13.5"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                  <td x-show="updateContact" x-cloak>
+                    <svg
+                      @click="updateContact = false"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6 cursor-pointer"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </td>
+                </form>
               </tr>
             </tbody>
           </table>

@@ -26,8 +26,8 @@ public class JdbcPaymentRepository implements PaymentRepository {
     }
 
     @Override
-    public void updatePaymentStatus(PaymentRecord paymentRecord) {
-        String sql = "UPDATE user_payments SET status = ? WHERE id = ?";
-        jdbcTemplate.update(sql, paymentRecord.getStatus(), paymentRecord.getId());
+    public void updatePaymentStatus(String status, int id) {
+        String sql = "UPDATE user_payment_records SET status = ? WHERE id = ?";
+        jdbcTemplate.update(sql, status, id);
     }
 }

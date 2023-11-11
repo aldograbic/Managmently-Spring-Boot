@@ -8,5 +8,5 @@ public interface PaymentRepository {
 
     List<PaymentRecord> getPaymentRecordsForUserById(int userId);
 
-    void updatePaymentStatus(PaymentRecord paymentRecord);
+    void updatePaymentStatus(String status, int id);
 }
