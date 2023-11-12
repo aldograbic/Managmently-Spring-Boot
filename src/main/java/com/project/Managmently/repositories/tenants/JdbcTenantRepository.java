@@ -52,4 +52,22 @@ public class JdbcTenantRepository implements TenantRepository {
         String sql = "UPDATE user_tenants SET first_name = ?, last_name = ?, city = ?, address = ?, phone_number = ?, email = ?, lease_start_date = ?, lease_end_date = ?, rent_amount = ?, security_deposit_amount = ? WHERE id = ?";
         jdbcTemplate.update(sql, tenant.getFirstName(), tenant.getLastName(), tenant.getCity(), tenant.getAddress(), tenant.getPhoneNumber(), tenant.getEmail(), tenant.getLeaseStartDate(), tenant.getLeaseEndDate(), tenant.getRentAmount(), tenant.getSecurityDepositAmount(), tenant.getId());
     }
+
+    @Override
+    public List<Tenant> searchTenants(String query) {
+        String sql = "SELECT * FROM user_tenants " +
+             "WHERE LOWER(first_name) LIKE LOWER(?) OR " +
+             "LOWER(last_name) LIKE LOWER(?) OR " +
+             "LOWER(city) LIKE LOWER(?) OR " +
+             "LOWER(address) LIKE LOWER(?) OR " +
+             "LOWER(phone_number) LIKE LOWER(?) OR " +
+             "LOWER(email) LIKE LOWER(?) OR " +
+             "LOWER(lease_start_date) LIKE LOWER(?) OR " +
+             "LOWER(lease_end_date) LIKE LOWER(?) OR " +
+             "LOWER(rent_amount) LIKE LOWER(?) OR " +
+             "LOWER(security_deposit_amount) LIKE LOWER(?)";
+
+        query = "%" + query + "%";
+        return jdbcTemplate.query(sql, new TenantRowMapper(), query, query, query, query, query, query, query, query, query, query);
+    }
 }

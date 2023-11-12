@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.Managmently.classes.PaymentRecord;
@@ -112,5 +113,11 @@ public class TenantsController {
         }
 
         return "redirect:/tenants";
+    }
+
+    @GetMapping("/searchTenants")
+    @ResponseBody
+    public List<Tenant> searchTenants(@RequestParam String query) {
+        return tenantRepository.searchTenants(query);
     }
 }

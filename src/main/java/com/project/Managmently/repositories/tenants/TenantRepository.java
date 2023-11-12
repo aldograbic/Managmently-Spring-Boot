@@ -15,4 +15,6 @@ public interface TenantRepository {
     Tenant getTenantById(int id);
 
     void updateTenant(Tenant tenant);
+
+    List<Tenant> searchTenants(String query);
 }

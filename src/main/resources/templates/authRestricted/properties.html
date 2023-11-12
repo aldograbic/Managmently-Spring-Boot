@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <th:block th:insert="~{fragments/head :: head}"></th:block>
+    <script th:src="@{js/properties.js}" defer="defer"></script>
     <title>Properties | Managmently</title>
   </head>
   <body>
@@ -183,6 +184,9 @@
               id="searchProperties"
               placeholder="Search by name, type, location, etc."
               class="h-10 w-full text-sm rounded-lg border border-gray-300 pl-9 pr-2 focus:border-blue-700"
+              x-data="{ query: '' }"
+              @keyup="searchProperties"
+              x-model="query"
             />
           </div>
           <div x-data="{ openSort: false }" class="relative">
@@ -231,7 +235,7 @@
           </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-4">
+        <div id="propertiesContainer" class="grid md:grid-cols-3 gap-4">
           <div
             th:each="property : ${properties}"
             class="border border-gray-200 rounded-lg shadow-lg"

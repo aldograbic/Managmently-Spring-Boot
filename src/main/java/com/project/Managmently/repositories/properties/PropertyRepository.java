@@ -15,4 +15,6 @@ public interface PropertyRepository {
     int getPropertyIdByName(String name);
     
     void updateProperty(Property property);
+
+    List<Property> searchProperties(String query);
 }

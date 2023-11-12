@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <th:block th:insert="~{fragments/head :: head}"></th:block>
+    <script th:src="@{js/tenants.js}" defer="defer"></script>
     <title>Tenants | Managmently</title>
   </head>
   <body>
@@ -246,6 +247,9 @@
               id="searchTenants"
               placeholder="Search by name, location, rent amount, etc."
               class="h-10 w-full text-sm rounded-lg border border-gray-300 pl-9 pr-2 focus:border-blue-700"
+              x-data="{ query: '' }"
+              @keyup="searchTenants"
+              x-model="query"
             />
           </div>
           <div x-data="{ openSort: false }" class="relative">
@@ -304,7 +308,7 @@
             th:text="${entry.key}"
           ></h2>
 
-          <div class="grid md:grid-cols-3 mt-8 gap-4">
+          <div id="tenantsContainer" class="grid md:grid-cols-3 mt-8 gap-4">
             <div th:if="${entry.value.isEmpty()}" class="text-gray-500">
               <p>No tenants for this property</p>
             </div>
