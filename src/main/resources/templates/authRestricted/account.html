@@ -14,6 +14,111 @@
           th:insert="~{fragments/auth-header :: auth-header}"
         ></th:block>
         <h1>My account</h1>
+        <div class="flex flex-col gap-4 items-center">
+          <img
+            src="img/user-placeholder.jpg"
+            alt="User image"
+            class="rounded-full w-64 aspect-square"
+          />
+          <form action="" method="post" class="grid grid-cols-2 gap-4">
+            <div class="relative">
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                class="peer"
+                placeholder=""
+                autocomplete="given-name"
+                th:value="${user.firstName}"
+              />
+              <label
+                for="firstName"
+                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                >First Name</label
+              >
+            </div>
+            <div class="relative">
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                class="peer"
+                placeholder=""
+                autocomplete="family-name"
+                th:value="${user.lastName}"
+              />
+              <label
+                for="lastName"
+                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                >Last Name</label
+              >
+            </div>
+            <div class="relative">
+              <input
+                type="text"
+                id="address"
+                name="address"
+                class="peer"
+                placeholder=""
+                autocomplete="street-address"
+                th:value="${user.address}"
+              />
+              <label
+                for="address"
+                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                >Address</label
+              >
+            </div>
+            <div class="relative">
+              <input
+                type="text"
+                id="city"
+                name="city"
+                class="peer"
+                placeholder=""
+                th:value="${user.city}"
+              />
+              <label
+                for="city"
+                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                >City</label
+              >
+            </div>
+            <div class="relative">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="peer"
+                placeholder=""
+                th:value="${user.city}"
+                autocomplete="email"
+              />
+              <label
+                for="email"
+                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                >E-mail address</label
+              >
+            </div>
+            <div class="relative">
+              <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                class="peer"
+                placeholder=""
+                th:value="${user.phoneNumber}"
+                autocomplete="tel"
+              />
+              <label
+                for="phoneNumber"
+                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                >Phone Number</label
+              >
+            </div>
+            <input type="submit" value="Save Changes" class="col-span-2" />
+          </form>
+        </div>
       </div>
     </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>

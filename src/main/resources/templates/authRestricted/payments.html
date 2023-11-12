@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <th:block th:insert="~{fragments/head :: head}"></th:block>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
     <script th:src="@{js/payments.js}" defer="defer"></script>
     <title>Payments | Managmently</title>
   </head>
@@ -15,6 +17,13 @@
           th:insert="~{fragments/auth-header :: auth-header}"
         ></th:block>
         <h1>Payments</h1>
+        <button
+          onclick="exportToPDF()"
+          class="button flex items-center ml-auto w-40"
+        >
+          Export to PDF
+        </button>
+
         <div class="flex items-center mt-8 gap-2 mb-2">
           <div class="relative w-full mb-2">
             <div
@@ -232,6 +241,7 @@
         </div>
       </div>
     </main>
+
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>
 </html>

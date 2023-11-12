@@ -11,4 +11,6 @@ public interface PaymentRepository {
     void updatePaymentStatus(String status, int id);
 
     List<PaymentRecord> searchPayments(String query);
+
+    // void savePaymentRecord(PaymentRecord paymentRecord);
 }

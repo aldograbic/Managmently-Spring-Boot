@@ -44,3 +44,41 @@ function searchPayments() {
     })
     .catch((error) => console.error("Error:", error));
 }
+
+function exportToPDF() {
+  const { jsPDF } = window.jspdf;
+  var doc = new jsPDF();
+  doc.text("Payments Table", 20, 10);
+
+  var rows = document
+    .getElementById("paymentTable")
+    .getElementsByTagName("tbody")[0]
+    .getElementsByTagName("tr");
+
+  var totalAmount = 0;
+
+  for (var i = 0; i < rows.length; i++) {
+    var cols = rows[i].getElementsByTagName("td");
+    var rowData = [];
+
+    for (var j = 0; j < cols.length; j++) {
+      var cellData = cols[j].textContent;
+
+      if (j === 3) {
+        totalAmount += parseFloat(cellData.replace(/[^\d.]/g, "")) || 0;
+      }
+
+      rowData.push(cellData);
+    }
+
+    doc.text(20, 20 + i * 10, rowData.join(" | "));
+  }
+
+  doc.text(
+    "Total Payment Amount: €" + totalAmount.toFixed(2),
+    20,
+    20 + rows.length * 10
+  );
+
+  doc.save("payments.pdf");
+}

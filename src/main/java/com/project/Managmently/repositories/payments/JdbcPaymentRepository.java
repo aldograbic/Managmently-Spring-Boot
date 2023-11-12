@@ -1,11 +1,16 @@
 package com.project.Managmently.repositories.payments;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.Managmently.classes.PaymentRecord;
+import com.project.Managmently.classes.Tenant;
 import com.project.Managmently.repositories.tenants.TenantRepository;
 
 @Repository
@@ -43,4 +48,37 @@ public class JdbcPaymentRepository implements PaymentRepository {
         query = "%" + query + "%";
         return jdbcTemplate.query(sql, new PaymentRowMapper(tenantRepository), query, query, query, query, query);
     }
+
+    // @Override
+    // public void savePaymentRecord(PaymentRecord paymentRecord) {
+    //     String sql = "INSERT INTO user_payment_records(payment_date, payment_amount, status, tenant_id, user_id) VALUES (?, ?, ?, ?, ?)";
+    //     jdbcTemplate.update(sql, paymentRecord.getPaymentDate(), paymentRecord.getPaymentAmount(), paymentRecord.getStatus(), paymentRecord.getTenantId(), paymentRecord.getUserId());
+    // }
+
+    // @Scheduled(cron = "0 0 0 * * ?")
+    // @Transactional
+    // public void generatePaymentsScheduled() {
+    //     List<Tenant> tenants = tenantRepository.getAllTenants();
+
+    //     for (Tenant tenant : tenants) {
+    //         generatePaymentsForTenant(tenant);
+    //     }
+    // }
+
+    // @Transactional
+    // private void generatePaymentsForTenant(Tenant tenant) {
+    //     LocalDate leaseStartDate = tenant.getLeaseStartDate();
+    //     LocalDate leaseEndDate = tenant.getLeaseEndDate();
+    //     BigDecimal rentAmount = tenant.getRentAmount();
+
+    //     while (leaseStartDate.isBefore(leaseEndDate)) {
+    //         PaymentRecord paymentRecord = new PaymentRecord();
+    //         paymentRecord.setTenantId(tenant.getId());
+    //         paymentRecord.setPaymentDate(leaseStartDate.plusMonths(1));
+    //         paymentRecord.setPaymentAmount(rentAmount);
+    //         paymentRecord.setStatus("Pending");
+
+    //         savePaymentRecord(paymentRecord);
+    //     }
+    // }
 }

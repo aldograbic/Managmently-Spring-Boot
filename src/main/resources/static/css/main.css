@@ -803,6 +803,10 @@ input[type="submit"]:hover,
   z-index: 50;
 }
 
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
@@ -843,6 +847,10 @@ input[type="submit"]:hover,
 
 .ml-4 {
   margin-left: 1rem;
+}
+
+.ml-auto {
+  margin-left: auto;
 }
 
 .mr-2 {
@@ -939,10 +947,6 @@ input[type="submit"]:hover,
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.w-1\/6 {
-  width: 16.666667%;
 }
 
 .w-10 {

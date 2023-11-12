@@ -70,4 +70,10 @@ public class JdbcTenantRepository implements TenantRepository {
         query = "%" + query + "%";
         return jdbcTemplate.query(sql, new TenantRowMapper(), query, query, query, query, query, query, query, query, query, query);
     }
+
+    // @Override
+    // public List<Tenant> getAllTenants() {
+    //     String sql = "SELECT * FROM user_tenants";
+    //     return jdbcTemplate.query(sql, new TenantRowMapper());
+    // }
 }
