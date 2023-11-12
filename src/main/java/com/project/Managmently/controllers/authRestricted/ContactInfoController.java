@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.Managmently.classes.Contact;
@@ -86,5 +88,11 @@ public class ContactInfoController {
         }
 
         return "redirect:/contact-info";
+    }
+
+    @GetMapping("/searchContacts")
+    @ResponseBody
+    public List<Contact> searchContacts(@RequestParam String query) {
+        return contactRepository.searchContacts(query);
     }
 }

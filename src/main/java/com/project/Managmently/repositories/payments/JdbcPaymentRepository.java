@@ -30,4 +30,17 @@ public class JdbcPaymentRepository implements PaymentRepository {
         String sql = "UPDATE user_payment_records SET status = ? WHERE id = ?";
         jdbcTemplate.update(sql, status, id);
     }
+
+    @Override
+    public List<PaymentRecord> searchPayments(String query) {
+        String sql = "SELECT * FROM user_payment_records INNER JOIN user_tenants ON user_payment_records.tenant_id = user_tenants.id " +
+             "WHERE LOWER(payment_amount) LIKE LOWER(?) OR " +
+             "LOWER(payment_date) LIKE LOWER(?) OR " +
+             "LOWER(status) LIKE LOWER(?) OR " +
+             "LOWER(first_name) LIKE LOWER(?) OR " +
+             "LOWER(last_name) LIKE LOWER(?)";
+
+        query = "%" + query + "%";
+        return jdbcTemplate.query(sql, new PaymentRowMapper(tenantRepository), query, query, query, query, query);
+    }
 }

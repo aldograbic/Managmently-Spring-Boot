@@ -9,4 +9,6 @@ public interface PaymentRepository {
     List<PaymentRecord> getPaymentRecordsForUserById(int userId);
 
     void updatePaymentStatus(String status, int id);
+
+    List<PaymentRecord> searchPayments(String query);
 }

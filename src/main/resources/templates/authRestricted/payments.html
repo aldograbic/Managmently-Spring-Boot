@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <th:block th:insert="~{fragments/head :: head}"></th:block>
+    <script th:src="@{js/payments.js}" defer="defer"></script>
     <title>Payments | Managmently</title>
   </head>
   <body>
@@ -38,6 +39,9 @@
               id="searchPayments"
               placeholder="Search by name, amount, status, etc."
               class="h-10 w-full text-sm rounded-lg border border-gray-300 pl-9 pr-2 focus:border-blue-700"
+              x-data="{ query: '' }"
+              @keyup="searchPayments"
+              x-model="query"
             />
           </div>
           <div x-data="{ openSort: false }" class="relative">
@@ -91,7 +95,7 @@
           th:unless="${paymentRecords.isEmpty()}"
           class="overflow-hidden rounded-lg border border-gray-200"
         >
-          <table class="w-full border-collapse text-left">
+          <table class="w-full border-collapse text-left" id="paymentTable">
             <thead class="bg-gray-50">
               <tr>
                 <th class="px-6 py-4 font-medium text-gray-500">Payment ID</th>
@@ -119,10 +123,7 @@
                   class="px-6 py-4"
                   th:text="${payment.tenant.firstName + ' ' + payment.tenant.lastName}"
                 ></td>
-                <td
-                  class="px-6 py-4"
-                  th:text="${payment.paymentDate + ''}"
-                ></td>
+                <td class="px-6 py-4" th:text="${payment.paymentDate}"></td>
                 <td
                   class="px-6 py-4"
                   th:text="${'€' + payment.paymentAmount}"

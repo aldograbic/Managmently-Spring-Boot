@@ -3,6 +3,7 @@
   <head>
     <th:block th:insert="~{fragments/head :: head}"></th:block>
     <title>Contacts | Managmently</title>
+    <script th:src="@{js/contacts.js}" defer="defer"></script>
   </head>
   <body>
     <main class="flex bg-gray-50">
@@ -239,6 +240,9 @@
               id="searchContacts"
               placeholder="Search by name, e-mail, organization, etc."
               class="h-10 w-full text-sm rounded-lg border border-gray-300 pl-9 pr-2 focus:border-blue-700"
+              x-data="{ query: '' }"
+              @keyup="searchContacts"
+              x-model="query"
             />
           </div>
           <div x-data="{ openSort: false }" class="relative">
@@ -288,7 +292,7 @@
         </div>
 
         <div class="overflow-hidden rounded-lg border border-gray-200">
-          <table class="w-full border-collapse text-left">
+          <table class="w-full border-collapse text-left" id="contactTable">
             <thead class="bg-gray-50">
               <tr>
                 <th class="px-6 py-4 font-medium text-gray-500">Name</th>

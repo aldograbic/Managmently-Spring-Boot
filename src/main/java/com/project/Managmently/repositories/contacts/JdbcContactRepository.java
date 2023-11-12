@@ -50,4 +50,19 @@ public class JdbcContactRepository implements ContactRepository {
         jdbcTemplate.update(sql, contact.getFirstName(), contact.getLastName(), contact.getEmail(), contact.getPhoneNumber(), contact.getOrganization(), contact.getJobTitle(),
          contact.getNotes(), contact.getId());
     }
+
+    @Override
+    public List<Contact> searchContacts(String query) {
+        String sql = "SELECT * FROM user_contact_info " +
+             "WHERE LOWER(first_name) LIKE LOWER(?) OR " +
+             "LOWER(last_name) LIKE LOWER(?) OR " +
+             "LOWER(email) LIKE LOWER(?) OR " +
+             "LOWER(phone_number) LIKE LOWER(?) OR " +
+             "LOWER(organization) LIKE LOWER(?) OR " +
+             "LOWER(job_title) LIKE LOWER(?) OR " +
+             "LOWER(notes) LIKE LOWER(?)";
+
+        query = "%" + query + "%";
+        return jdbcTemplate.query(sql, new ContactRowMapper(), query, query, query, query, query, query, query);
+    }
 }

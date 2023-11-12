@@ -13,4 +13,6 @@ public interface ContactRepository {
     List<Contact> getContactsForUserById(int userId);
 
     void updateContact(Contact contact);
+
+    List<Contact> searchContacts(String query);
 }
