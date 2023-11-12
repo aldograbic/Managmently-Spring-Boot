@@ -14,13 +14,23 @@
           th:insert="~{fragments/auth-header :: auth-header}"
         ></th:block>
         <h1>My account</h1>
-        <div class="flex flex-col gap-4 items-center">
-          <img
-            src="img/user-placeholder.jpg"
-            alt="User image"
-            class="rounded-full w-64 aspect-square"
-          />
-          <form action="" method="post" class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-4" x-data="{ deleteUser: false }">
+          <div class="flex gap-4 items-center">
+            <img
+              src="img/user-placeholder.jpg"
+              alt="User image"
+              class="rounded-full w-32 aspect-square outline-4 outline outline-blue-600"
+            />
+            <div class="flex flex-col">
+              <p
+                th:text="${user.firstName + ' ' + user.lastName}"
+                class="text-3xl"
+              ></p>
+              <p class="text-blue-600">ROLE</p>
+            </div>
+          </div>
+
+          <form action="" method="post" class="grid grid-cols-2 gap-4 mt-8">
             <div class="relative">
               <input
                 type="text"
@@ -91,7 +101,7 @@
                 name="email"
                 class="peer"
                 placeholder=""
-                th:value="${user.city}"
+                th:value="${user.email}"
                 autocomplete="email"
               />
               <label
@@ -118,6 +128,122 @@
             </div>
             <input type="submit" value="Save Changes" class="col-span-2" />
           </form>
+          <button
+            @click="deleteUser =! deleteUser"
+            class="button"
+            style="background-color: #d11a2a"
+          >
+            Delete Account
+          </button>
+          <div
+            x-show="deleteUser"
+            class="fixed inset-0 z-50 overflow-y-auto"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+            x-cloak
+          >
+            <div
+              class="flex items-end justify-center min-h-screen text-black px-4 text-center md:items-center sm:block sm:p-0"
+            >
+              <div
+                x-cloak
+                @click="deleteUser = false"
+                x-show="deleteUser"
+                x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-200 transform"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
+                aria-hidden="true"
+              ></div>
+
+              <div
+                x-cloak
+                x-show="deleteUser"
+                x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave="transition ease-in duration-200 transform"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+              >
+                <div class="flex items-center justify-between">
+                  <h2 class="text-xl font-semibold">
+                    Are you sure you want to delete your account?
+                  </h2>
+                  <a
+                    href="javascript:void(0)"
+                    @click="deleteUser = false"
+                    class="text-gray-600 focus:outline-none hover:text-gray-700 mb-4"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </a>
+                </div>
+
+                <div class="space-y-4">
+                  <p>
+                    Deleting your account will permanently remove all your
+                    associated information in our system.
+                  </p>
+                  <ul class="list-disc list-inside">
+                    <li>
+                      Your profile information will be permanently deleted.
+                    </li>
+                    <li>
+                      All data associated with your account, including contact,
+                      properties, tenants and payments, will be lost.
+                    </li>
+                    <li>
+                      You will no longer have access to your account or any
+                      associated services.
+                    </li>
+                  </ul>
+
+                  <p>This action cannot be undone.</p>
+                  <p>
+                    To confirm the deletion of your account, please enter your
+                    password:
+                  </p>
+                  <input type="text" name="password" id="password" />
+                </div>
+                <div class="justify-around items-center mt-4 space-y-4">
+                  <form
+                    th:action="@{'/deleteUser/' + ${user.id}}"
+                    method="post"
+                  >
+                    <input
+                      type="submit"
+                      value="Delete"
+                      style="background-color: #d11a2a"
+                    />
+                  </form>
+                  <button
+                    @click="deleteUser = false"
+                    class="button bg-gray-100 hover:bg-gray-200 text-black"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>

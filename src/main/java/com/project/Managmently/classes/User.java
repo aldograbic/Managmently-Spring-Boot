@@ -13,6 +13,7 @@ public class User {
     private int roleId;
     private boolean emailVerified;
     private String confirmationToken;
+    private Role role;
     // private String profileImage;
 
     public User() {}
@@ -124,6 +125,14 @@ public class User {
 
     public void setConfirmationToken(String confirmationToken) {
         this.confirmationToken = confirmationToken;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     // public String getProfileImage() {

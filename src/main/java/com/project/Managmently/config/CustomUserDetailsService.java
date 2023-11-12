@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
 
+import com.project.Managmently.classes.Role;
 import com.project.Managmently.classes.User;
 import com.project.Managmently.repositories.user.UserRepository;
 
@@ -38,9 +39,11 @@ public class CustomUserDetailsService extends SavedRequestAwareAuthenticationSuc
         //     throw new EmailNotVerifiedException("Email not verified.");
         // }
 
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        String roleName = "USER";
+        Role role = user.getRole();
+        String roleName = (role != null) ? role.getName() : "USER";
 
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        
         if (roleName != null && !roleName.isEmpty()) {
             authorities.add(new SimpleGrantedAuthority(roleName));
         }

@@ -1,1 +1,1 @@
-INSERT INTO roles VALUES (1, "USER"), (2, "OWNER"), (3, "AGENT");
+INSERT INTO roles VALUES (1, "CUSTOMER"), (2, "OWNER"), (3, "AGENT");
