@@ -15,18 +15,32 @@
         ></th:block>
         <h1>My account</h1>
         <div class="flex flex-col gap-4" x-data="{ deleteUser: false }">
-          <div class="flex gap-4 items-center">
+          <div class="flex flex-col gap-4 items-center">
             <img
               src="img/user-placeholder.jpg"
               alt="User image"
-              class="rounded-full w-32 aspect-square outline-4 outline outline-blue-600"
+              class="rounded-full w-40 aspect-square outline-4 outline outline-blue-600"
             />
-            <div class="flex flex-col">
+            <div class="flex flex-col items-center">
               <p
-                th:text="${user.firstName + ' ' + user.lastName}"
+                th:text="${user.firstName + ' ' + user.lastName + ' (' + user.username + ')'}"
                 class="text-3xl"
               ></p>
-              <p class="text-blue-600">ROLE</p>
+              <p th:if="${user.role.name == 'ROLE_USER'}" class="text-blue-600">
+                USER
+              </p>
+              <p
+                th:if="${user.role.name == 'ROLE_OWNER'}"
+                class="text-blue-600"
+              >
+                PROPERTY OWNER
+              </p>
+              <p
+                th:if="${user.role.name == 'ROLE_AGENT'}"
+                class="text-blue-600"
+              >
+                REAL ESTATE AGENT
+              </p>
             </div>
           </div>
 

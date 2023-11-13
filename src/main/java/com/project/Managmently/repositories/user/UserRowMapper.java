@@ -5,9 +5,17 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import com.project.Managmently.classes.Role;
 import com.project.Managmently.classes.User;
+import com.project.Managmently.repositories.roles.RoleRepository;
 
-public class UserRowMapper implements RowMapper<User>{
+public class UserRowMapper implements RowMapper<User> {
+
+    private final RoleRepository roleRepository;
+
+    public UserRowMapper(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
 
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -23,7 +31,11 @@ public class UserRowMapper implements RowMapper<User>{
         user.setEmail(rs.getString("email"));
         user.setEmailVerified(rs.getBoolean("email_verified"));
         user.setConfirmationToken(rs.getString("confirmation_token"));
-        // user.setProfileImage(rs.getString("profile_image"));
+        user.setRoleId(rs.getInt("role_id"));
+
+        int roleId = rs.getInt("role_id");
+        Role role = roleRepository.findById(roleId);
+        user.setRole(role);
 
         return user;
     }

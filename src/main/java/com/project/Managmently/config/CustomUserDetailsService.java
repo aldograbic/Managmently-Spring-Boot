@@ -1,10 +1,8 @@
 package com.project.Managmently.config;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
 
-import com.project.Managmently.classes.Role;
 import com.project.Managmently.classes.User;
 import com.project.Managmently.repositories.user.UserRepository;
 
@@ -39,19 +36,10 @@ public class CustomUserDetailsService extends SavedRequestAwareAuthenticationSuc
         //     throw new EmailNotVerifiedException("Email not verified.");
         // }
 
-        Role role = user.getRole();
-        String roleName = (role != null) ? role.getName() : "USER";
-
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        
-        if (roleName != null && !roleName.isEmpty()) {
-            authorities.add(new SimpleGrantedAuthority(roleName));
-        }
-
         return new org.springframework.security.core.userdetails.User(
                 username,
                 user.getPassword(),
-                authorities
+                Collections.singleton(new SimpleGrantedAuthority(user.getRole().getName()))
         );
     }
 }
