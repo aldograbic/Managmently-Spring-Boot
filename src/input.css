@@ -9,7 +9,7 @@
   }
 
   main {
-    @apply min-h-screen;
+    @apply min-h-screen dark:bg-gray-900;
   }
 
   .content {
@@ -17,7 +17,7 @@
   }
 
   .content-regular {
-    @apply flex flex-col relative bg-white dark:bg-gray-800 w-full md:w-3/5;
+    @apply flex flex-col relative bg-white dark:bg-gray-900 w-full md:w-3/5;
   }
 
   h1 {
@@ -25,7 +25,19 @@
   }
 
   h2 {
-    @apply text-2xl mb-4 pl-2 border-l-2 border-blue-700;
+    @apply text-2xl mb-4 pl-2 border-l-2 border-blue-700 dark:text-gray-100;
+  }
+
+  p {
+    @apply dark:text-gray-200;
+  }
+
+  .link {
+    @apply hover:underline underline-offset-8 decoration-blue-600 dark:text-gray-100;
+  }
+
+  svg {
+    @apply dark:text-gray-100;
   }
 
   input[type="text"],

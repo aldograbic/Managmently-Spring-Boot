@@ -6,7 +6,26 @@
   </head>
   <body>
     <th:block th:insert="~{fragments/header :: header}"></th:block>
-    <main></main>
+    <main class="flex flex-col items-center">
+      <div class="content-regular">
+        <div class="md:flex items-center gap-16 md:mt-40">
+          <img
+            src="img/error-404-illustration.svg"
+            alt="Error 404 illustration"
+            class="md:w-2/5"
+          />
+          <div class="text-lg md:text-xl flex-1 space-y-4">
+            <h1 class="md:text-6xl">PAGE NOT FOUND</h1>
+            <p>
+              Looks like you've hit a dead end. Our property management system
+              couldn't locate the requested page. Please double-check the URL
+              for any typos or click below to return to the main dashboard.
+            </p>
+            <a href="/dashboard" class="button w-fit">Return to Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>
 </html>
