@@ -55,7 +55,7 @@ public class PropertiesController {
             propertyRepository.insertProperty(property);
             redirectAttributes.addFlashAttribute("successMessage", "Property successfully added.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the property. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the property. Please try again.");
         }
         
         return "redirect:/properties";
@@ -69,7 +69,7 @@ public class PropertiesController {
             propertyRepository.deleteProperty(id);
             redirectAttributes.addFlashAttribute("successMessage", "Property successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the property. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the property. Please try again.");
         }                            
         
         return "redirect:/properties";
@@ -82,7 +82,7 @@ public class PropertiesController {
             redirectAttributes.addFlashAttribute("successMessage", "Property successfully updated.");
 
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the property. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the property. Please try again.");
 
         }
 

@@ -56,7 +56,7 @@ public class ContactInfoController {
             contactRepository.insertContact(contact);
             redirectAttributes.addFlashAttribute("successMessage", "Contact successfully added.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the contact. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the contact. Please try again.");
         }
         
         return "redirect:/contact-info";
@@ -69,7 +69,7 @@ public class ContactInfoController {
             contactRepository.deleteContact(id);
             redirectAttributes.addFlashAttribute("successMessage", "Contact successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the contact. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the contact. Please try again.");
 
         }
 
@@ -83,8 +83,7 @@ public class ContactInfoController {
             redirectAttributes.addFlashAttribute("successMessage", "Contact successfully updated.");
 
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the contact. Try again.");
-
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the contact. Please try again.");
         }
 
         return "redirect:/contact-info";

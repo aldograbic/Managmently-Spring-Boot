@@ -10,9 +10,15 @@
       <th:block
         th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
       ></th:block>
-      <div class="content flex-1 flex-col">
+      <div class="content">
         <th:block
           th:insert="~{fragments/auth-header :: auth-header}"
+        ></th:block>
+        <th:block
+          th:insert="~{fragments/successMessage :: successMessage}"
+        ></th:block>
+        <th:block
+          th:insert="~{fragments/errorMessage :: errorMessage}"
         ></th:block>
         <h1>Contacts</h1>
 
@@ -459,7 +465,11 @@
                 </td>
               </tr>
 
-              <tr th:each="contact : ${userContacts}" x-show="updateContact">
+              <tr
+                th:each="contact : ${userContacts}"
+                x-show="updateContact"
+                x-cloak
+              >
                 <form action="/updateContact" method="post">
                   <td class="flex m-2">
                     <input type="hidden" name="id" th:value="${contact.id}" />

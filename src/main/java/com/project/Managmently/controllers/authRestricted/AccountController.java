@@ -38,7 +38,7 @@ public class AccountController {
             redirectAttributes.addFlashAttribute("successMessage", "Account information successfully updated.");
 
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating your information. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating your information. Please try again.");
         }
 
         return "redirect:/account";
@@ -52,8 +52,8 @@ public class AccountController {
             redirectAttributes.addFlashAttribute("successMessage", "Account successfully deleted.");
 
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting your account. Try again.");
-            return "redirect:account";
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting your account. Please try again.");
+            return "redirect:/account";
         }
 
         return "redirect:/";

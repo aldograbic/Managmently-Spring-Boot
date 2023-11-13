@@ -12,9 +12,15 @@
       <th:block
         th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
       ></th:block>
-      <div class="content flex-1 flex-col">
+      <div class="content">
         <th:block
           th:insert="~{fragments/auth-header :: auth-header}"
+        ></th:block>
+        <th:block
+          th:insert="~{fragments/successMessage :: successMessage}"
+        ></th:block>
+        <th:block
+          th:insert="~{fragments/errorMessage :: errorMessage}"
         ></th:block>
         <h1>Payments</h1>
         <button
@@ -137,7 +143,7 @@
                   class="px-6 py-4"
                   th:text="${'€' + payment.paymentAmount}"
                 ></td>
-                <td class="px-6 py-4" x-show="!statusSelect">
+                <td class="px-6 py-4" x-show="!statusSelect" x-cloak>
                   <span
                     th:if="${payment.status == 'Pending'}"
                     th:text="${payment.status}"

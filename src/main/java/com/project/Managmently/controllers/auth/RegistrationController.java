@@ -33,21 +33,18 @@ public class RegistrationController {
 
         User existingUserEmail = userRepository.findByEmail(user.getEmail());
         if (existingUserEmail != null) {
-            redirectAttributes.addFlashAttribute("errorMessage", "User already exists with the same e-mail address.");
-
+            redirectAttributes.addFlashAttribute("errorMessage", "User already exists with the same e-mail address. Please try again.");
             return "redirect:/registration";
-            
         }
+
         User existingUserUsername = userRepository.findByUsername(user.getUsername());
         if (existingUserUsername != null) {
-            redirectAttributes.addFlashAttribute("errorMessage", "User already exists with the same username. Try again.");
-            
+            redirectAttributes.addFlashAttribute("errorMessage", "User already exists with the same username. Please try again.");
             return "redirect:/registration";
         }
         
         if (!user.getPassword().equals(confirmPassword)) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Passwords must match.");
-            
+            redirectAttributes.addFlashAttribute("errorMessage", "Passwords must match in order to register. Please try again.");
             return "redirect:/registration";
         }
         

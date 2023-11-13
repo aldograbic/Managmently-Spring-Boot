@@ -7,6 +7,9 @@
   <body>
     <th:block th:insert="~{fragments/header :: header}"></th:block>
     <main class="flex flex-col items-center">
+      <th:block
+        th:insert="~{fragments/errorMessage :: errorMessage}"
+      ></th:block>
       <div class="content-regular">
         <h1>Registration</h1>
         <form action="/processRegistration" method="post" class="space-y-6">

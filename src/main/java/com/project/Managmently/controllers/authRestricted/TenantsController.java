@@ -82,7 +82,7 @@ public class TenantsController {
             tenantRepository.insertTenant(tenant, userId);
             redirectAttributes.addFlashAttribute("successMessage", "Tenant successfully added.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the tenant. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the tenant. Please try again.");
         }
 
         return "redirect:/tenants";
@@ -95,7 +95,7 @@ public class TenantsController {
             tenantRepository.deleteTenant(id);
             redirectAttributes.addFlashAttribute("successMessage", "Tenant successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the tenant. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with deleting the tenant. Please try again.");
         }                            
         
         return "redirect:/tenants";
@@ -108,7 +108,7 @@ public class TenantsController {
             redirectAttributes.addFlashAttribute("successMessage", "Tenant successfully updated.");
 
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the tenant. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the tenant. Please try again.");
 
         }
 

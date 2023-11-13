@@ -51,7 +51,7 @@ public class PaymentsController {
             paymentRepository.updatePaymentStatus(status, id);
             redirectAttributes.addFlashAttribute("successMessage", "Payment successfully updated.");                       
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the payment. Try again.");
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the payment. Please try again.");
         }
                               
         return "redirect:/payments";

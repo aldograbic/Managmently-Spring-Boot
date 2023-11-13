@@ -26,10 +26,15 @@ public class ContactController {
                                 @RequestParam("message") String message, 
                                 RedirectAttributes redirectAttributes) {
 
-         userRepository.contact(name, email, message);
-         redirectAttributes.addFlashAttribute("successMessage", "Your message has been submitted successfully.");
+         try {
+            userRepository.contact(name, email, message);
+            redirectAttributes.addFlashAttribute("successMessage", "Your message has been submitted successfully.");
 
+         } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with sending your message. Please try again.");
+            return "redirect:/contact";
+         }
+         
          return "redirect:/";
-
     }
 }

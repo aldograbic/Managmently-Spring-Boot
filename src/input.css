@@ -13,11 +13,11 @@
   }
 
   .content {
-    @apply flex px-0 md:px-4 border rounded-lg m-1 bg-white dark:bg-gray-800;
+    @apply flex flex-1 flex-col relative px-0 md:px-4 border rounded-lg m-1 bg-white dark:bg-gray-800;
   }
 
   .content-regular {
-    @apply w-full md:w-3/5;
+    @apply flex flex-col relative bg-white dark:bg-gray-800 w-full md:w-3/5;
   }
 
   h1 {
@@ -34,7 +34,7 @@
   input[type="date"],
   select,
   textarea {
-    @apply block px-2.5 pb-2.5 pt-4 w-full text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-700 focus:outline-none focus:ring-0 focus:border-blue-700;
+    @apply block px-2.5 pb-2.5 pt-3 w-full text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-700 focus:outline-none focus:ring-0 focus:border-blue-700;
   }
 
   input[type="text"] + label,

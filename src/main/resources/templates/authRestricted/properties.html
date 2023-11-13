@@ -10,9 +10,15 @@
       <th:block
         th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
       ></th:block>
-      <div class="content flex-1 flex-col">
+      <div class="content">
         <th:block
           th:insert="~{fragments/auth-header :: auth-header}"
+        ></th:block>
+        <th:block
+          th:insert="~{fragments/successMessage :: successMessage}"
+        ></th:block>
+        <th:block
+          th:insert="~{fragments/errorMessage :: errorMessage}"
         ></th:block>
         <h1>Properties</h1>
         <div x-data="{ addProperty: false }">

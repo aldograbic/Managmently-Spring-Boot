@@ -10,12 +10,15 @@
         th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
       ></th:block>
 
-      <div class="content flex-1 flex-col relative" x-init="{ successMessage }">
+      <div class="content">
         <th:block
           th:insert="~{fragments/auth-header :: auth-header}"
         ></th:block>
         <th:block
           th:insert="~{fragments/successMessage :: successMessage}"
+        ></th:block>
+        <th:block
+          th:insert="~{fragments/errorMessage :: errorMessage}"
         ></th:block>
         <h1>My account</h1>
         <div class="flex flex-col gap-4" x-data="{ deleteUser: false }">
