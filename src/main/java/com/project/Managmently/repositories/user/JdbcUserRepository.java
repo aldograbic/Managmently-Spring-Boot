@@ -45,4 +45,17 @@ public class JdbcUserRepository implements UserRepository {
         String sql = "INSERT INTO contact_messages(name, email, message) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, name, email, message);
     }
+
+    @Override
+    public void updateUser(User user) {
+         String sql = "UPDATE users SET first_name = ?, last_name = ?, city = ?, address = ?, phone_number = ?, email = ? WHERE id = ?";
+         jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getCity(), user.getAddress(),
+            user.getPhoneNumber(), user.getEmail(), user.getId());
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        String sql = "DELETE FROM users WHERE id = ?";
+        jdbcTemplate.update(sql, user.getId());
+    }
 }

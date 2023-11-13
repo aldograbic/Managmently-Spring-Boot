@@ -11,4 +11,8 @@ public interface UserRepository {
     void saveUser(User user);
 
     void contact(String name, String email, String message);
+
+    void updateUser(User user);
+
+    void deleteUser(User user);
 }

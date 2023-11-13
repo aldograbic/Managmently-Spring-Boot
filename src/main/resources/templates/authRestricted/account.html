@@ -30,7 +30,12 @@
             </div>
           </div>
 
-          <form action="" method="post" class="grid grid-cols-2 gap-4 mt-8">
+          <form
+            action="/updateUser"
+            method="post"
+            class="grid grid-cols-2 gap-4 mt-8"
+          >
+            <input type="hidden" name="id" th:value="${user.id}" />
             <div class="relative">
               <input
                 type="text"
@@ -224,10 +229,8 @@
                   <input type="text" name="password" id="password" />
                 </div>
                 <div class="justify-around items-center mt-4 space-y-4">
-                  <form
-                    th:action="@{'/deleteUser/' + ${user.id}}"
-                    method="post"
-                  >
+                  <form action="/deleteUser" method="post">
+                    <input type="hidden" name="id" th:value="${user.id}" />
                     <input
                       type="submit"
                       value="Delete"
