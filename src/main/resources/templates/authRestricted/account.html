@@ -9,9 +9,13 @@
       <th:block
         th:insert="~{fragments/auth-sidebar :: auth-sidebar}"
       ></th:block>
-      <div class="content flex-1 flex-col">
+
+      <div class="content flex-1 flex-col relative" x-init="{ successMessage }">
         <th:block
           th:insert="~{fragments/auth-header :: auth-header}"
+        ></th:block>
+        <th:block
+          th:insert="~{fragments/successMessage :: successMessage}"
         ></th:block>
         <h1>My account</h1>
         <div class="flex flex-col gap-4" x-data="{ deleteUser: false }">
@@ -147,11 +151,7 @@
             </div>
             <input type="submit" value="Save Changes" class="col-span-2" />
           </form>
-          <button
-            @click="deleteUser =! deleteUser"
-            class="button"
-            style="background-color: #d11a2a"
-          >
+          <button @click="deleteUser =! deleteUser" class="button w-40">
             Delete Account
           </button>
           <div
@@ -240,7 +240,7 @@
                     To confirm the deletion of your account, please enter your
                     password:
                   </p>
-                  <input type="text" name="password" id="password" />
+                  <input type="password" name="password" id="password" />
                 </div>
                 <div class="justify-around items-center mt-4 space-y-4">
                   <form action="/deleteUser" method="post">
