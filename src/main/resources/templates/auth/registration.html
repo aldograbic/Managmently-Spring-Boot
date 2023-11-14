@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <th:block th:insert="~{fragments/head :: head}"></th:block>
+    <script th:src="@{js/registration.js}" defer="defer"></script>
     <title>Registration | Managmently</title>
   </head>
   <body>
@@ -22,7 +23,7 @@
                 onclick="selectUserType(1)"
               >
                 <img src="img/customers-icon.png" alt="Customer icon" />
-                <p>Customer</p>
+                <p>User</p>
               </div>
               <div
                 class="grid place-items-center border rounded-lg aspect-square md:h-48 flex-1 cursor-pointer hover:bg-blue-50 transition-colors ease-linear"
@@ -51,6 +52,7 @@
                   class="peer"
                   placeholder=""
                   autocomplete="given-name"
+                  required
                 />
                 <label
                   for="firstName"
@@ -67,6 +69,7 @@
                   class="peer"
                   placeholder=""
                   autocomplete="family-name"
+                  required
                 />
                 <label
                   for="lastName"
@@ -83,6 +86,7 @@
                   class="peer"
                   placeholder=""
                   autocomplete="address-level2"
+                  required
                 />
                 <label
                   for="city"
@@ -99,6 +103,7 @@
                   class="peer"
                   placeholder=""
                   autocomplete="street-address"
+                  required
                 />
                 <label
                   for="address"
@@ -115,6 +120,7 @@
                   class="peer"
                   placeholder=""
                   autocomplete="tel"
+                  required
                 />
                 <label
                   for="phoneNumber"
@@ -131,6 +137,7 @@
                   class="peer"
                   placeholder=""
                   autocomplete="email"
+                  required
                 />
                 <label
                   for="email"
@@ -151,6 +158,7 @@
                   class="peer"
                   placeholder=""
                   autocomplete="username"
+                  required
                 />
                 <label
                   for="username"
@@ -166,6 +174,7 @@
                     name="password"
                     class="peer"
                     placeholder=""
+                    required
                   />
                   <label
                     for="password"
@@ -181,6 +190,7 @@
                     name="confirmPassword"
                     class="peer"
                     placeholder=""
+                    required
                   />
                   <label
                     for="confirmPassword"
@@ -193,25 +203,11 @@
           </div>
 
           <div>
-            <input type="submit" value="SUBMIT" />
+            <input type="submit" value="Create Account" />
           </div>
         </form>
       </div>
     </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>
-    <script>
-      function selectUserType(roleId) {
-        document.getElementById("roleId").value = roleId;
-        const userTypeDivs = document.querySelectorAll(".flex > div");
-        userTypeDivs.forEach((div) => {
-          div.classList.remove("selected");
-        });
-
-        const selectedDiv = document.querySelector(
-          `[onclick="selectUserType(${roleId})"]`
-        );
-        selectedDiv.classList.add("selected");
-      }
-    </script>
   </body>
 </html>

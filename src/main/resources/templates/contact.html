@@ -11,57 +11,74 @@
         th:insert="~{fragments/errorMessage :: errorMessage}"
       ></th:block>
       <div class="content-regular">
-        <h1>Contact Us</h1>
-        <form action="/processContactUs" method="post" class="space-y-6">
-          <div class="relative">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="peer"
-              placeholder=""
-              autocomplete="name"
+        <div class="md:flex items-center gap-16 md:mt-40">
+          <img
+            src="img/contact-us-illustration.svg"
+            alt="Contact us illustration"
+            class="md:w-2/5"
+          />
+          <div class="flex-1 space-y-4 relative">
+            <img
+              src="img/question-mark.svg"
+              alt=""
+              class="rotate-12 absolute right-0"
             />
-            <label
-              for="name"
-              class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-              >Name</label
-            >
-          </div>
+            <h1>Contact Us</h1>
+            <form action="/processContactUs" method="post" class="space-y-4">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="peer"
+                  placeholder=""
+                  autocomplete="name"
+                  required
+                />
+                <label
+                  for="name"
+                  class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                  >Name</label
+                >
+              </div>
 
-          <div class="relative">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="peer"
-              placeholder=""
-              autocomplete="email"
-            />
-            <label
-              for="email"
-              class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-              >E-mail address</label
-            >
-          </div>
+              <div class="relative">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="peer"
+                  placeholder=""
+                  autocomplete="email"
+                  required
+                />
+                <label
+                  for="email"
+                  class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                  >E-mail address</label
+                >
+              </div>
 
-          <div class="relative">
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              class="peer resize-none"
-              placeholder=""
-            ></textarea>
-            <label
-              for="message"
-              class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-7 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-              >Message</label
-            >
-          </div>
+              <div class="relative">
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  class="peer resize-none"
+                  placeholder=""
+                  required
+                ></textarea>
+                <label
+                  for="message"
+                  class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-7 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                  >Message</label
+                >
+              </div>
 
-          <input type="submit" value="Submit" />
-        </form>
+              <input type="submit" value="Send Message" />
+            </form>
+          </div>
+        </div>
       </div>
     </main>
     <th:block th:insert="~{fragments/footer :: footer}"></th:block>
