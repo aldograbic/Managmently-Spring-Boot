@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.Managmently.config.EmailService;
 import com.project.Managmently.repositories.user.UserRepository;
 
 @Controller
@@ -14,6 +15,9 @@ public class ContactController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EmailService emailService;
     
     @GetMapping("/contact")
     public String getContactPage() {
@@ -28,6 +32,8 @@ public class ContactController {
 
          try {
             userRepository.contact(name, email, message);
+            emailService.sendMessage("managmently@gmail.com", "New contact message from " + name, "User e-mail: " + email + "\nMessage: " + message);
+
             redirectAttributes.addFlashAttribute("successMessage", "Your message has been submitted successfully.");
 
          } catch (Exception e) {

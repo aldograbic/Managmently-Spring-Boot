@@ -2,6 +2,7 @@ package com.project.Managmently.repositories.user;
 
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -60,5 +61,22 @@ public class JdbcUserRepository implements UserRepository {
     public void deleteUser(User user) {
         String sql = "DELETE FROM users WHERE id = ?";
         jdbcTemplate.update(sql, user.getId());
+    }
+
+     @Override
+    public User findByConfirmationToken(String token) {
+        String sql = "SELECT id, username, password, first_name, last_name, city, address, phone_number, email, role_id, profile_image, email_verified, confirmation_token " +
+                    "FROM users WHERE confirmation_token = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, new UserRowMapper(roleRepository), token);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public void updateEmailVerification(User user) {
+        String sql = "UPDATE users SET email_verified = ? WHERE id = ?";
+        jdbcTemplate.update(sql, user.isEmailVerified(), user.getId());
     }
 }
