@@ -14,7 +14,7 @@ public class User {
     private boolean emailVerified;
     private String confirmationToken;
     private Role role;
-    // private String profileImage;
+    private String profileImage;
 
     public User() {}
 
@@ -135,11 +135,11 @@ public class User {
         this.role = role;
     }
 
-    // public String getProfileImage() {
-    //     return profileImage;
-    // }
+    public String getProfileImage() {
+        return profileImage;
+    }
 
-    // public void setProfileImage(String profileImage) {
-    //     this.profileImage = profileImage;
-    // }
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
 }

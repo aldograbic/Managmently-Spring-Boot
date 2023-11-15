@@ -551,7 +551,6 @@ main {
 
 .content {
   position: relative;
-  margin: 0.25rem;
   display: flex;
   flex: 1 1 0%;
   flex-direction: column;
@@ -570,6 +569,7 @@ main {
 
 @media (min-width: 768px) {
   .content {
+    margin: 0.25rem;
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -1005,6 +1005,10 @@ input[type="submit"]:hover,
   height: 2.5rem;
 }
 
+.h-12 {
+  height: 3rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
@@ -1035,6 +1039,10 @@ input[type="submit"]:hover,
 
 .w-11 {
   width: 2.75rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-16 {
@@ -1352,8 +1360,17 @@ input[type="submit"]:hover,
   --tw-bg-opacity: 0.4;
 }
 
+.bg-opacity-80 {
+  --tw-bg-opacity: 0.8;
+}
+
 .stroke-0 {
   stroke-width: 0;
+}
+
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .p-0 {
@@ -1597,6 +1614,10 @@ input[type="submit"]:hover,
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .ease-linear {
   transition-timing-function: linear;
 }
@@ -1697,6 +1718,14 @@ input[type="submit"]:hover,
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.group:hover .group-hover\:bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
 }
 
 .peer:checked ~ .peer-checked\:bg-blue-600 {

@@ -143,7 +143,7 @@
                     >
                   </div>
 
-                  <div class="relative">
+                  <div class="relative mb-4">
                     <input
                       type="text"
                       id="location"
@@ -155,6 +155,28 @@
                       for="location"
                       class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
                       >Property location</label
+                    >
+                  </div>
+
+                  <div class="relative">
+                    <select
+                      type="text"
+                      id="status"
+                      name="status"
+                      class="peer"
+                      placeholder=""
+                    >
+                      <option value="" selected disabled>
+                        Select a Status
+                      </option>
+                      <option value="Available">Available</option>
+                      <option value="Occupied">Occupied</option>
+                      <option value="Construction">Construction</option>
+                    </select>
+                    <label
+                      for="status"
+                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                      >Property Status</label
                     >
                   </div>
 
@@ -253,9 +275,9 @@
                 class="w-full rounded-t-lg"
               />
               <span
+                th:text="${property.status}"
                 class="absolute min-w-[4rem] text-center bottom-0 right-0 p-2 mb-2 mr-2 pointer-events-none bg-blue-100/75 rounded-full"
-                ><span>Available</span></span
-              >
+              ></span>
             </div>
 
             <div class="flex justify-between items-center p-4">
@@ -485,14 +507,29 @@
                         </div>
 
                         <div class="relative">
-                          <input
+                          <select
                             type="text"
                             id="status"
                             name="status"
                             class="peer"
                             placeholder=""
-                            th:value="${property.status}"
-                          />
+                          >
+                            <option
+                              th:selected="${property.status == 'Available'}"
+                              th:text="Available"
+                              th:value="Available"
+                            ></option>
+                            <option
+                              th:selected="${property.status == 'Occupied'}"
+                              th:text="Occupied"
+                              th:value="Occupied"
+                            ></option>
+                            <option
+                              th:selected="${property.status == 'Construction'}"
+                              th:text="Construction"
+                              th:value="Construction"
+                            ></option>
+                          </select>
                           <label
                             for="status"
                             class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"

@@ -18,8 +18,8 @@ public class JdbcPropertyRepository implements PropertyRepository {
 
     @Override
     public void insertProperty(Property property) {
-        String sql = "INSERT INTO user_properties(name, type, location, user_id) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, property.getName(), property.getType(), property.getLocation(), property.getUserId());
+        String sql = "INSERT INTO user_properties(name, type, location, status, user_id) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, property.getName(), property.getType(), property.getLocation(), property.getStatus(), property.getUserId());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class JdbcPropertyRepository implements PropertyRepository {
     @Override
     public void updateProperty(Property property) {
         String sql = "UPDATE user_properties SET name = ?, type = ?, location = ?, description = ?, size = ?, bedrooms = ?, bathrooms = ?, price = ?, status = ? WHERE id = ?";
-        jdbcTemplate.update(sql, property.getName(), property.getType(), property.getLocation(), property.getDescription(), property.getSize(), property.getBedrooms(), property.getBathrooms(), property.getPrice(), property.isStatus(), property.getId());
+        jdbcTemplate.update(sql, property.getName(), property.getType(), property.getLocation(), property.getDescription(), property.getSize(), property.getBedrooms(), property.getBathrooms(), property.getPrice(), property.getStatus(), property.getId());
     }
 
     @Override

@@ -12,14 +12,14 @@ public class Property {
     private int bedrooms;
     private int bathrooms;
     private BigDecimal price;
-    private boolean status;
+    private String status;
     private int userId;
     
     public Property() {
     }
 
     public Property(String name, String type, String location, String description, BigDecimal size, int bedrooms,
-            int bathrooms, BigDecimal price, boolean status, int userId) {
+            int bathrooms, BigDecimal price, String status, int userId) {
         this.name = name;
         this.type = type;
         this.location = location;
@@ -104,11 +104,11 @@ public class Property {
         this.price = price;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

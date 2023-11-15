@@ -65,7 +65,7 @@ public class JdbcUserRepository implements UserRepository {
 
      @Override
     public User findByConfirmationToken(String token) {
-        String sql = "SELECT id, username, password, first_name, last_name, city, address, phone_number, email, role_id, profile_image, email_verified, confirmation_token " +
+        String sql = "SELECT id, username, password, first_name, last_name, city, address, phone_number, email, profile_image, role_id, profile_image, email_verified, confirmation_token " +
                     "FROM users WHERE confirmation_token = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new UserRowMapper(roleRepository), token);

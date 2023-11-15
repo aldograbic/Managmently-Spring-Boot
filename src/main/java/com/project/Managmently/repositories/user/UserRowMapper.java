@@ -32,6 +32,7 @@ public class UserRowMapper implements RowMapper<User> {
         user.setEmailVerified(rs.getBoolean("email_verified"));
         user.setConfirmationToken(rs.getString("confirmation_token"));
         user.setRoleId(rs.getInt("role_id"));
+        user.setProfileImage(rs.getString("profile_image"));
 
         int roleId = rs.getInt("role_id");
         Role role = roleRepository.findById(roleId);

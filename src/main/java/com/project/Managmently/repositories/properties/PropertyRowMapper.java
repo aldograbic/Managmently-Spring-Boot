@@ -21,7 +21,7 @@ public class PropertyRowMapper implements RowMapper<Property> {
         property.setBedrooms(rs.getInt("bedrooms")); 
         property.setBathrooms(rs.getInt("bathrooms"));
         property.setPrice(rs.getBigDecimal("price"));
-        property.setStatus(rs.getBoolean("status"));
+        property.setStatus(rs.getString("status"));
         property.setUserId(rs.getInt("user_id"));
 
         return property;

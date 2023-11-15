@@ -13,7 +13,7 @@
   }
 
   .content {
-    @apply flex flex-1 flex-col relative px-0 md:px-4 border rounded-lg m-1 bg-white dark:bg-gray-800;
+    @apply flex flex-1 flex-col relative px-0 md:px-4 border rounded-lg md:m-1 bg-white dark:bg-gray-800;
   }
 
   .content-regular {

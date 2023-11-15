@@ -58,7 +58,7 @@ CREATE TABLE `user_properties` (
   `bedrooms` int DEFAULT NULL,
   `bathrooms` int DEFAULT NULL,
   `price` decimal(15,2) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
+  `status` varchar(20) NOT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
