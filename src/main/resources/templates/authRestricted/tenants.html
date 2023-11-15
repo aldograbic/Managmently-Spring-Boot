@@ -726,7 +726,7 @@
                     />
                   </svg>
                   <p
-                    th:text="${tenant.leaseStartDate + ' - ' + tenant.leaseEndDate}"
+                    th:text="${#temporals.format(tenant.leaseStartDate, 'MM/dd/yyyy')} + ' - ' + ${#temporals.format(tenant.leaseEndDate, 'MM/dd/yyyy')}"
                   ></p>
                 </div>
 
