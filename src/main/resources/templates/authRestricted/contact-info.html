@@ -246,7 +246,7 @@
               name="searchContacts"
               id="searchContacts"
               placeholder="Search by name, e-mail, organization, etc."
-              class="h-10 w-full text-sm rounded-lg border border-gray-300 pl-9 pr-2 focus:border-blue-700"
+              class="w-full"
               x-data="{ query: '' }"
               @keyup="searchContacts"
               x-model="query"
@@ -274,23 +274,23 @@
             </div>
             <div
               x-show="openSort"
-              class="absolute right-0 p-2 z-10 bg-gray-50 dark:bg-neutral-900 rounded-md shadow-lg w-40"
+              class="absolute right-0 p-2 z-10 bg-gray-50 dark:bg-gray-800 dark:text-gray-100 rounded-md shadow-lg w-40"
               x-cloak
             >
               <a
                 href="javascript:void(0)"
-                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg"
+                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg dark:hover:bg-gray-700"
               >
                 Name
               </a>
               <a
                 href="javascript:void(0)"
-                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg"
+                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg dark:hover:bg-gray-700"
               >
                 Organization</a
               ><a
                 href="javascript:void(0)"
-                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg"
+                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg dark:hover:bg-gray-700"
               >
                 Title
               </a>
@@ -446,15 +446,13 @@
                             th:action="@{'/deleteContact/' + ${contact.id}}"
                             method="post"
                           >
-                            <input
-                              type="submit"
-                              value="Delete"
-                              style="background-color: #d11a2a"
-                            />
+                            <button type="submit" class="deleteButton">
+                              Delete
+                            </button>
                           </form>
                           <button
                             @click="deleteContact = false"
-                            class="button bg-gray-100 hover:bg-gray-200 text-black"
+                            class="cancelButton"
                           >
                             Cancel
                           </button>

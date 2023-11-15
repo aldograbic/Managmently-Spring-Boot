@@ -211,7 +211,7 @@
               name="searchProperties"
               id="searchProperties"
               placeholder="Search by name, type, location, etc."
-              class="h-10 w-full text-sm rounded-lg border border-gray-300 pl-9 pr-2 focus:border-blue-700"
+              class="w-full"
               x-data="{ query: '' }"
               @keyup="searchProperties"
               x-model="query"
@@ -266,7 +266,7 @@
         <div id="propertiesContainer" class="grid md:grid-cols-3 gap-4">
           <div
             th:each="property : ${properties}"
-            class="border border-gray-200 rounded-lg shadow-lg"
+            class="border border-gray-200 dark:border-gray-600 dark:bg-gray-900 rounded-lg shadow-lg"
           >
             <div class="relative">
               <img
@@ -642,15 +642,13 @@
                           th:action="@{'/deleteProperty/' + ${property.id}}"
                           method="post"
                         >
-                          <input
-                            type="submit"
-                            value="Delete"
-                            style="background-color: #d11a2a"
-                          />
+                          <button type="submit" class="deleteButton">
+                            Delete
+                          </button>
                         </form>
                         <button
                           @click="deleteProperty = false"
-                          class="button bg-gray-100 hover:bg-gray-200 text-black"
+                          class="cancelButton"
                         >
                           Cancel
                         </button>
