@@ -80,6 +80,10 @@
     @apply border-blue-700 bg-blue-200;
   }
 
+  .not-allowed-cursor {
+    cursor: not-allowed;
+  }
+
   [x-cloak] {
     @apply hidden;
   }

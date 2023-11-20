@@ -17,7 +17,7 @@
           <div class="space-y-6">
             <h2>User type</h2>
             <input type="hidden" id="roleId" name="roleId" value="" />
-            <div class="flex gap-4 text-lg">
+            <div class="flex gap-4 text-lg" id="userTypeDiv">
               <div
                 class="grid place-items-center border rounded-lg aspect-square md:h-48 flex-1 cursor-pointer hover:bg-blue-50 transition-colors ease-linear"
                 onclick="selectUserType(1)"
@@ -40,6 +40,7 @@
                 <p>Property Owner</p>
               </div>
             </div>
+            <span id="userTypeError" class="text-red-500 font-semibold"></span>
           </div>
           <div class="space-y-6">
             <h2>Basic info</h2>
@@ -175,6 +176,7 @@
                     class="peer"
                     placeholder=""
                     required
+                    oninput="validatePassword()"
                   />
                   <label
                     for="password"
@@ -198,12 +200,31 @@
                     >Confirm Password</label
                   >
                 </div>
+                <ul
+                  id="passwordCriteria"
+                  class="space-y-1 text-gray-500 list-disc list-inside dark:text-gray-300"
+                >
+                  <li id="lengthCriteria">At least 6 characters</li>
+                  <li id="numberCriteria">At least one number</li>
+                  <li id="specialCharCriteria">
+                    Inclusion of at least one special character, e.g., ! @ # ?
+                  </li>
+                </ul>
+                <span
+                  id="passwordError"
+                  class="text-red-500 font-semibold"
+                ></span>
               </div>
             </div>
           </div>
 
           <div>
-            <input type="submit" value="Create Account" />
+            <input
+              id="createAccountBtn"
+              type="submit"
+              value="Create Account"
+              onclick="validateUserType()"
+            />
           </div>
         </form>
       </div>
