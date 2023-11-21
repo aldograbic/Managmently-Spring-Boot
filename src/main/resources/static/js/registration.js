@@ -1,5 +1,17 @@
 const createAccountBtn = document.getElementById("createAccountBtn");
 
+document
+  .getElementById("createAccountBtn")
+  .addEventListener("click", function (event) {
+    validateUserType();
+    validatePasswordMatch();
+
+    // Check if either validation failed and prevent form submission if needed
+    if (createAccountBtn.disabled) {
+      event.preventDefault();
+    }
+  });
+
 function selectUserType(roleId) {
   const innerDivs = document.querySelectorAll(".grid");
   innerDivs.forEach((div) => {
@@ -46,7 +58,6 @@ function validateUserType() {
     createAccountBtn.disabled = false;
   }
 
-  createAccountBtn.disabled = !roleId || !passwordsMatch;
   createAccountBtn.classList.toggle("opacity-50", createAccountBtn.disabled);
 }
 
@@ -59,14 +70,15 @@ function validatePasswordMatch() {
   const passwordsMatch = password === confirmPassword;
 
   if (!passwordsMatch) {
-    confirmPasswordInput.classList.add("border-red-500");
+    confirmPasswordInput.style.border = "1px solid #ef4444";
     passwordErrorSpan.innerHTML = "Passwords must match.";
   } else {
-    confirmPasswordInput.classList.remove("border-red-500");
+    confirmPasswordInput.style.border = "";
     passwordErrorSpan.innerHTML = "";
   }
 
   createAccountBtn.disabled = !roleId || !passwordsMatch;
+
   createAccountBtn.classList.toggle("opacity-50", createAccountBtn.disabled);
 }
 
@@ -79,6 +91,7 @@ function validatePassword() {
   const lengthCriteria = document.getElementById("lengthCriteria");
   const numberCriteria = document.getElementById("numberCriteria");
   const specialCharCriteria = document.getElementById("specialCharCriteria");
+  const createAccountBtn = document.getElementById("createAccountBtn");
 
   passwordCriteriaMet = {
     length: password.length >= 6,
@@ -105,5 +118,15 @@ function validatePassword() {
     grayClass,
     !passwordCriteriaMet.hasSpecialChar
   );
+
   validateUserType();
+
+  // Check if any of the password criteria is not met
+  const anyCriteriaNotMet = Object.values(passwordCriteriaMet).some(
+    (criteria) => !criteria
+  );
+
+  createAccountBtn.disabled = !roleId || anyCriteriaNotMet;
+
+  createAccountBtn.classList.toggle("opacity-50", createAccountBtn.disabled);
 }

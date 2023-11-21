@@ -3,6 +3,7 @@ package com.project.Managmently.config;
 import java.io.IOException;
 
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 // import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
@@ -22,10 +23,10 @@ public class DatabaseLoginFailureHandler extends SimpleUrlAuthenticationFailureH
 
         if (exception instanceof BadCredentialsException) {
             response.sendRedirect("/login?error");
-        // } else if (exception instanceof EmailNotVerifiedException) {
-        //     response.sendRedirect("/login?notVerified");
-        // } else if (exception instanceof InternalAuthenticationServiceException) {
-        //     response.sendRedirect("/login?notVerified");
+        } else if (exception instanceof EmailNotVerifiedException) {
+            response.sendRedirect("/login?notVerified");
+        } else if (exception instanceof InternalAuthenticationServiceException) {
+            response.sendRedirect("/login?notVerified");
         } else {
             super.onAuthenticationFailure(request, response, exception);
         }

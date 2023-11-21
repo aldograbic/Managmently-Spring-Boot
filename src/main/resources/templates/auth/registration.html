@@ -13,7 +13,12 @@
       ></th:block>
       <div class="content-regular">
         <h1>Registration</h1>
-        <form action="/processRegistration" method="post" class="space-y-6">
+        <form
+          id="registrationForm"
+          action="/processRegistration"
+          method="post"
+          class="space-y-6"
+        >
           <div class="space-y-6">
             <h2>User type</h2>
             <input type="hidden" id="roleId" name="roleId" value="" />
@@ -212,19 +217,14 @@
                 </ul>
                 <span
                   id="passwordError"
-                  class="text-red-500 font-semibold"
+                  class="text-red-500 font-semibold transform -translate-y-4"
                 ></span>
               </div>
             </div>
           </div>
 
           <div>
-            <input
-              id="createAccountBtn"
-              type="submit"
-              value="Create Account"
-              onclick="validateUserType()"
-            />
+            <input id="createAccountBtn" type="submit" value="Create Account" />
           </div>
         </form>
       </div>

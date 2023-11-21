@@ -17,7 +17,7 @@
   }
 
   .content-regular {
-    @apply flex flex-col relative bg-white dark:bg-gray-900 w-full md:w-3/5;
+    @apply flex flex-col relative px-2 md:px-0 bg-white dark:bg-gray-900 w-full md:w-3/5;
   }
 
   h1 {

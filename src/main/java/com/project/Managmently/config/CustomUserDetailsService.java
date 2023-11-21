@@ -32,9 +32,9 @@ public class CustomUserDetailsService extends SavedRequestAwareAuthenticationSuc
             throw new UsernameNotFoundException("User not found.");
         }
 
-        // if (!user.isEmailVerified()) {
-        //     throw new EmailNotVerifiedException("Email not verified.");
-        // }
+        if (!user.isEmailVerified()) {
+            throw new EmailNotVerifiedException("Email not verified.");
+        }
 
         return new org.springframework.security.core.userdetails.User(
                 username,
