@@ -534,6 +534,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -882,6 +886,14 @@ input[type="search"]:focus {
   display: none;
 }
 
+@property --num {
+  syntax: "<integer>";
+
+  initial-value: 0;
+
+  inherits: false;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -927,12 +939,20 @@ input[type="search"]:focus {
   bottom: 0.5rem;
 }
 
+.bottom-full {
+  bottom: 100%;
+}
+
 .left-0 {
   left: 0px;
 }
 
 .left-2\/3 {
   left: 66.666667%;
+}
+
+.left-5 {
+  left: 1.25rem;
 }
 
 .right-0 {
@@ -1007,6 +1027,10 @@ input[type="search"]:focus {
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .ml-1 {
@@ -1105,6 +1129,10 @@ input[type="search"]:focus {
   height: 3rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
@@ -1121,12 +1149,20 @@ input[type="search"]:focus {
   height: 2rem;
 }
 
+.h-80 {
+  height: 20rem;
+}
+
 .h-full {
   height: 100%;
 }
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .w-10 {
@@ -1151,6 +1187,10 @@ input[type="search"]:focus {
 
 .w-20 {
   width: 5rem;
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .w-40 {
@@ -1230,8 +1270,18 @@ input[type="search"]:focus {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.rotate-0 {
+  --tw-rotate: 0deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .rotate-12 {
   --tw-rotate: 12deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-180 {
+  --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1257,6 +1307,10 @@ input[type="search"]:focus {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-cols-4 {
@@ -1299,6 +1353,10 @@ input[type="search"]:focus {
   justify-content: space-around;
 }
 
+.justify-items-center {
+  justify-items: center;
+}
+
 .gap-16 {
   gap: 4rem;
 }
@@ -1325,6 +1383,12 @@ input[type="search"]:focus {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-12 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(3rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(3rem * var(--tw-space-y-reverse));
 }
 
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
@@ -1481,6 +1545,11 @@ input[type="search"]:focus {
      object-fit: contain;
 }
 
+.object-fill {
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
 .p-0 {
   padding: 0px;
 }
@@ -1530,6 +1599,10 @@ input[type="search"]:focus {
   padding-bottom: 1rem;
 }
 
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
 .pl-12 {
   padding-left: 3rem;
 }
@@ -1553,6 +1626,16 @@ input[type="search"]:focus {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
 }
 
 .text-base {
@@ -1580,12 +1663,29 @@ input[type="search"]:focus {
   line-height: 1rem;
 }
 
+.font-extrabold {
+  font-weight: 800;
+}
+
 .font-medium {
   font-weight: 500;
 }
 
+.font-normal {
+  font-weight: 400;
+}
+
 .font-semibold {
   font-weight: 600;
+}
+
+.tabular-nums {
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+
+.leading-relaxed {
+  line-height: 1.625;
 }
 
 .text-black {
@@ -1601,6 +1701,11 @@ input[type="search"]:focus {
 .text-blue-700 {
   --tw-text-opacity: 1;
   color: rgb(29 78 216 / var(--tw-text-opacity));
+}
+
+.text-gray-100 {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
 }
 
 .text-gray-500 {
@@ -1683,6 +1788,12 @@ input[type="search"]:focus {
   transition-duration: 150ms;
 }
 
+.transition-\[_--num\] {
+  transition-property: --num;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1701,12 +1812,22 @@ input[type="search"]:focus {
   transition-duration: 150ms;
 }
 
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .duration-200 {
   transition-duration: 200ms;
 }
 
 .duration-300 {
   transition-duration: 300ms;
+}
+
+.duration-\[3s\] {
+  transition-duration: 3s;
 }
 
 .ease-in {
@@ -1723,6 +1844,22 @@ input[type="search"]:focus {
 
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.\[--num\:30\] {
+  --num: 30;
+}
+
+.\[--num\:40\] {
+  --num: 40;
+}
+
+.\[--num\:95\] {
+  --num: 95;
+}
+
+.\[counter-set\:_num_var\(--num\)\] {
+  counter-set: num var(--num);
 }
 
 .after\:absolute::after {
@@ -1902,6 +2039,25 @@ input[type="search"]:focus {
   color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 
+@supports (counter-set: var(--tw)) {
+  .supports-\[counter-set\]\:sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .supports-\[counter-set\]\:before\:content-\[counter\(num\)\]::before {
+    --tw-content: counter(num);
+    content: var(--tw-content);
+  }
+}
+
 :is([dir="rtl"] .peer:checked ~ .rtl\:peer-checked\:after\:-translate-x-full)::after {
   content: var(--tw-content);
   --tw-translate-x: -100%;
@@ -2038,10 +2194,6 @@ input[type="search"]:focus {
 @media (min-width: 768px) {
   .md\:mt-0 {
     margin-top: 0px;
-  }
-
-  .md\:mt-20 {
-    margin-top: 5rem;
   }
 
   .md\:mt-40 {

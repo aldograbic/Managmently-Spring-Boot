@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
     @apply flex flex-col;
     font-family: "Nunito Sans", sans-serif;
@@ -86,5 +90,11 @@
 
   [x-cloak] {
     @apply hidden;
+  }
+
+  @property --num {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
   }
 }
