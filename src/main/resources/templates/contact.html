@@ -21,7 +21,10 @@
             <img
               src="img/question-mark.svg"
               alt=""
-              class="rotate-12 absolute right-0"
+              class="absolute right-0"
+              x-data="{ shaken: false }"
+              x-intersect="shaken = true"
+              :class="{ 'rotate': shaken }"
             />
             <h1>Contact Us</h1>
             <form action="/processContactUs" method="post" class="space-y-4">
