@@ -62,4 +62,10 @@ public class JdbcPropertyRepository implements PropertyRepository {
         query = "%" + query + "%";
         return jdbcTemplate.query(sql, new PropertyRowMapper(), query, query, query, query, query, query, query, query, query);
     }
+
+    @Override
+    public int getPropertiesCountForUserById(int userId) {
+        String sql = "SELECT COUNT(*) FROM user_properties WHERE user_id = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, userId);
+    }
 }

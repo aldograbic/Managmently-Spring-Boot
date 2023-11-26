@@ -103,4 +103,10 @@ public class JdbcPaymentRepository implements PaymentRepository {
         return jdbcTemplate.queryForObject(sql, BigDecimal.class, userId);
     }
 
+    @Override
+    public int getPaymentsCountForUserById(int userId) {
+        String sql = "SELECT COUNT(*) FROM user_properties WHERE user_id = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, userId);
+    }
+
 }

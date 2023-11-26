@@ -254,7 +254,7 @@
           </div>
           <div x-data="{ openSort: false }" class="relative">
             <div
-              class="border rounded-full w-10 border-gray-300 aspect-square grid place-items-center mb-1.5 cursor-pointer"
+              class="border rounded-full w-10 border-gray-300 aspect-square grid place-items-center mb-1.5 cursor-pointer hover:bg-gray-100 transition-colors"
               @click="openSort =!openSort"
             >
               <svg
@@ -274,7 +274,7 @@
             </div>
             <div
               x-show="openSort"
-              class="absolute right-0 p-2 z-10 bg-gray-50 dark:bg-gray-900 dark:text-gray-100 rounded-md shadow-lg w-40"
+              class="absolute right-0 p-2 z-10 rounded-md shadow-lg w-40 bg-gray-50 dark:bg-gray-900 dark:text-gray-100"
               x-cloak
             >
               <a

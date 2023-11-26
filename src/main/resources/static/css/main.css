@@ -1692,6 +1692,10 @@ input[type="search"]:focus {
   padding-bottom: 1rem;
 }
 
+.pe-1 {
+  padding-inline-end: 0.25rem;
+}
+
 .pl-12 {
   padding-left: 3rem;
 }

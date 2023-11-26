@@ -19,4 +19,6 @@ public interface TenantRepository {
     List<Tenant> searchTenants(String query);
 
     // List<Tenant> getAllTenants();
+
+    int getTenantCountForUserById(int userId);
 }

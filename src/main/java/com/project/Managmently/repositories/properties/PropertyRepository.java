@@ -17,4 +17,6 @@ public interface PropertyRepository {
     void updateProperty(Property property);
 
     List<Property> searchProperties(String query);
+
+    int getPropertiesCountForUserById(int userId);
 }
