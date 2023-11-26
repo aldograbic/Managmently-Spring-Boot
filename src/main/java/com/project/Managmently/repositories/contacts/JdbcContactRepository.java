@@ -18,7 +18,7 @@ public class JdbcContactRepository implements ContactRepository {
 
     @Override
     public void insertContact(Contact contact) {
-        String sql = "INSERT INTO user_contact_info(first_name, last_name, email, phone_number, organization, job_title, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user_contacts(first_name, last_name, email, phone_number, organization, job_title, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         jdbcTemplate.update(sql, 
             contact.getFirstName(),
@@ -34,26 +34,26 @@ public class JdbcContactRepository implements ContactRepository {
     
     @Override
     public void deleteContact(int id) {
-        String sql = "DELETE FROM user_contact_info WHERE id = ?";
+        String sql = "DELETE FROM user_contacts WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
 
     @Override
     public List<Contact> getContactsForUserById(int userId) {
-        String sql = "SELECT * FROM user_contact_info WHERE user_id = ?";
+        String sql = "SELECT * FROM user_contacts WHERE user_id = ?";
         return jdbcTemplate.query(sql, new ContactRowMapper(), userId);
     }
     
     @Override
     public void updateContact(Contact contact) {
-        String sql = "UPDATE user_contact_info SET first_name = ?, last_name = ?, email = ?, phone_number = ?, organization = ?, job_title = ?, notes = ? WHERE id = ?";
+        String sql = "UPDATE user_contacts SET first_name = ?, last_name = ?, email = ?, phone_number = ?, organization = ?, job_title = ?, notes = ? WHERE id = ?";
         jdbcTemplate.update(sql, contact.getFirstName(), contact.getLastName(), contact.getEmail(), contact.getPhoneNumber(), contact.getOrganization(), contact.getJobTitle(),
          contact.getNotes(), contact.getId());
     }
 
     @Override
     public List<Contact> searchContacts(String query) {
-        String sql = "SELECT * FROM user_contact_info " +
+        String sql = "SELECT * FROM user_contacts " +
              "WHERE LOWER(first_name) LIKE LOWER(?) OR " +
              "LOWER(last_name) LIKE LOWER(?) OR " +
              "LOWER(email) LIKE LOWER(?) OR " +

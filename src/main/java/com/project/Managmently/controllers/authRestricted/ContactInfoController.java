@@ -94,4 +94,10 @@ public class ContactInfoController {
     public List<Contact> searchContacts(@RequestParam String query) {
         return contactRepository.searchContacts(query);
     }
+
+    @GetMapping("/searchUsers")
+    @ResponseBody
+    public List<User> searchUsers(@RequestParam String query) {
+        return userRepository.searchUsers(query);
+    }
 }

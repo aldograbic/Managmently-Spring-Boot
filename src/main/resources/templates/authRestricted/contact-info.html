@@ -104,121 +104,40 @@
                 </div>
 
                 <p class="mt-2 text-sm text-gray-500">
-                  Insert the new contact's details into your contact list.
+                  Search for your contact and send friend request so you can
+                  have it saved in your contact list.
                 </p>
 
-                <form th:action="@{/insertContact}" method="post" class="mt-5">
-                  <div class="relative mb-4">
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      class="peer"
-                      placeholder=""
-                    />
-                    <label
-                      for="firstName"
-                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                      >First name</label
+                <div class="relative mt-6">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
                     >
+                      <path
+                        fill="currentColor"
+                        d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5q0-2.725 1.888-4.612T9.5 3q2.725 0 4.612 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3l-1.4 1.4ZM9.5 14q1.875 0 3.188-1.313T14 9.5q0-1.875-1.313-3.188T9.5 5Q7.625 5 6.312 6.313T5 9.5q0 1.875 1.313 3.188T9.5 14Z"
+                      />
+                    </svg>
                   </div>
-
-                  <div class="relative mb-4">
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      class="peer"
-                      placeholder=""
-                    />
-                    <label
-                      for="lastName"
-                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                      >Last name</label
-                    >
-                  </div>
-
-                  <div class="relative mb-4">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      class="peer"
-                      placeholder=""
-                      autocomplete="email"
-                    />
-                    <label
-                      for="email"
-                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                      >E-mail address</label
-                    >
-                  </div>
-
-                  <div class="relative mb-4">
-                    <input
-                      type="text"
-                      id="phoneNumber"
-                      name="phoneNumber"
-                      class="peer"
-                      placeholder=""
-                    />
-                    <label
-                      for="phoneNumber"
-                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                      >Phone number</label
-                    >
-                  </div>
-
-                  <div class="relative mb-4">
-                    <input
-                      type="text"
-                      id="organization"
-                      name="organization"
-                      class="peer"
-                      placeholder=""
-                      autocomplete="organization"
-                    />
-                    <label
-                      for="organization"
-                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                      >Organization</label
-                    >
-                  </div>
-
-                  <div class="relative mb-4">
-                    <input
-                      type="text"
-                      id="jobTitle"
-                      name="jobTitle"
-                      class="peer"
-                      placeholder=""
-                    />
-                    <label
-                      for="jobTitle"
-                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                      >Job Title</label
-                    >
-                  </div>
-
-                  <div class="relative">
-                    <textarea
-                      id="notes"
-                      name="notes"
-                      rows="5"
-                      class="peer resize-none"
-                      placeholder=""
-                    ></textarea>
-                    <label
-                      for="notes"
-                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-7 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                      >Notes</label
-                    >
-                  </div>
-
-                  <div class="flex justify-end mt-8">
-                    <input type="submit" value="Submit" />
-                  </div>
-                </form>
+                  <input
+                    type="search"
+                    name="searchUsers"
+                    id="searchUsers"
+                    placeholder="Search"
+                    class="w-full"
+                    x-data="{ query: '' }"
+                    @keyup="searchUsers"
+                    x-model="query"
+                  />
+                </div>
+                <div id="usersList">
+                  <ul></ul>
+                </div>
               </div>
             </div>
           </div>

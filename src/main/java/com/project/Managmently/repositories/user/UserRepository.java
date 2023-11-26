@@ -1,5 +1,7 @@
 package com.project.Managmently.repositories.user;
 
+import java.util.List;
+
 import com.project.Managmently.classes.User;
 
 public interface UserRepository {
@@ -19,4 +21,6 @@ public interface UserRepository {
     User findByConfirmationToken(String token);
 
     void updateEmailVerification(User user);
+
+    List<User> searchUsers(String query);
 }

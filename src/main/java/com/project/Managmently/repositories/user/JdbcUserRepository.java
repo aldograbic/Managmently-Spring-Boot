@@ -79,4 +79,16 @@ public class JdbcUserRepository implements UserRepository {
         String sql = "UPDATE users SET email_verified = ? WHERE id = ?";
         jdbcTemplate.update(sql, user.isEmailVerified(), user.getId());
     }
+
+    @Override
+    public List<User> searchUsers(String query) {
+        String sql = "SELECT * FROM users " +
+            "WHERE LOWER(username) LIKE LOWER(?) OR " +
+            "LOWER(first_name) LIKE LOWER(?) OR " +
+            "LOWER(last_name) LIKE LOWER(?) OR " +
+            "LOWER(email) LIKE LOWER(?)";
+
+        query = "%" + query + "%";
+        return jdbcTemplate.query(sql, new UserRowMapper(roleRepository), query, query, query, query);
+    }
 }
