@@ -77,7 +77,7 @@
                 x-transition:leave="transition ease-in duration-200 transform"
                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+                class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-900 rounded-lg shadow-xl 2xl:max-w-2xl"
               >
                 <div class="flex items-center justify-between">
                   <h2 class="text-xl font-semibold">Add new contact</h2>
@@ -274,23 +274,23 @@
             </div>
             <div
               x-show="openSort"
-              class="absolute right-0 p-2 z-10 bg-gray-50 dark:bg-gray-800 dark:text-gray-100 rounded-md shadow-lg w-40"
+              class="absolute right-0 p-2 z-10 bg-gray-50 dark:bg-gray-900 dark:text-gray-100 rounded-md shadow-lg w-40"
               x-cloak
             >
               <a
                 href="javascript:void(0)"
-                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg dark:hover:bg-gray-700"
+                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg dark:hover:bg-gray-800"
               >
                 Name
               </a>
               <a
                 href="javascript:void(0)"
-                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg dark:hover:bg-gray-700"
+                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg dark:hover:bg-gray-800"
               >
                 Organization</a
               ><a
                 href="javascript:void(0)"
-                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg dark:hover:bg-gray-700"
+                class="block px-4 py-2 text-base hover:bg-gray-100 rounded-lg dark:hover:bg-gray-800"
               >
                 Title
               </a>
@@ -298,9 +298,11 @@
           </div>
         </div>
 
-        <div class="overflow-hidden rounded-lg border border-gray-200">
+        <div
+          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600"
+        >
           <table class="w-full border-collapse text-left" id="contactTable">
-            <thead class="bg-gray-50">
+            <thead class="bg-gray-50 dark:bg-gray-900">
               <tr>
                 <th class="px-6 py-4 font-medium text-gray-500">Name</th>
                 <th class="px-6 py-4 font-medium text-gray-500">E-mail</th>
@@ -315,12 +317,12 @@
               </tr>
             </thead>
             <tbody
-              class="divide-y divide-gray-100 border-t border-gray-100"
+              class="divide-y divide-gray-100 dark:bg-gray-900 dark:divide-gray-600 border-t border-gray-100 dark:border-gray-600"
               x-data="{ updateContact: false}"
             >
               <tr
                 th:each="contact : ${userContacts}"
-                class="hover:bg-gray-50"
+                class="hover:bg-gray-50 hover:dark:bg-gray-800 dark:text-gray-100"
                 x-show="!updateContact"
               >
                 <td

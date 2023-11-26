@@ -81,4 +81,26 @@ public class JdbcPaymentRepository implements PaymentRepository {
     //         savePaymentRecord(paymentRecord);
     //     }
     // }
+
+    @Override
+    public BigDecimal getCompletedPaymentsCountForUserInCurrentMonth(int userId) {
+        String sql = "SELECT SUM(payment_amount) FROM user_payment_records " +
+                    "WHERE user_id = ? " +
+                    "AND status = 'Complete' " +
+                    "AND YEAR(payment_date) = YEAR(CURDATE()) " +
+                    "AND MONTH(payment_date) = MONTH(CURDATE())";
+        return jdbcTemplate.queryForObject(sql, BigDecimal.class, userId);
+    }
+
+    @Override
+    public BigDecimal getCompletedPaymentsCountForUserInPreviousMonth(int userId) {
+        String sql = "SELECT SUM(payment_amount) FROM user_payment_records " +
+                     "WHERE user_id = ? " +
+                     "AND status = 'Complete' " +
+                     "AND YEAR(payment_date) = YEAR(CURDATE()) " +
+                     "AND MONTH(payment_date) = MONTH(CURDATE()) - 1";
+    
+        return jdbcTemplate.queryForObject(sql, BigDecimal.class, userId);
+    }
+
 }

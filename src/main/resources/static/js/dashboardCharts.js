@@ -1,88 +1,78 @@
-const chart1 = document.getElementById("chart1");
-const chart2 = document.getElementById("chart2");
-const chart3 = document.getElementById("chart3");
-const chart4 = document.getElementById("chart4");
-
-new Chart(chart1, {
-  type: "pie",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
+window.addEventListener("load", function () {
+  let options = {
+    chart: {
+      height: "100%",
+      maxWidth: "100%",
+      type: "area",
+      dropShadow: {
+        enabled: false,
       },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
+      toolbar: {
+        show: false,
       },
     },
-  },
-});
-
-new Chart(chart2, {
-  type: "bar",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
+    tooltip: {
+      enabled: true,
+      x: {
+        show: false,
       },
     },
-  },
-});
-
-new Chart(chart3, {
-  type: "doughnut",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
+    fill: {
+      type: "gradient",
+      gradient: {
+        opacityFrom: 0.55,
+        opacityTo: 0,
+        shade: "#1C64F2",
+        gradientToColors: ["#1C64F2"],
       },
     },
-  },
-});
-
-new Chart(chart4, {
-  type: "line",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      width: 4,
+    },
+    grid: {
+      show: false,
+      strokeDashArray: 4,
+      padding: {
+        left: 2,
+        right: 2,
+        top: 0,
       },
     },
-  },
+    series: [
+      {
+        name: "Revenue",
+        data: [400, 200, 600, 800],
+        color: "#1D4ED8",
+      },
+    ],
+    xaxis: {
+      categories: ["07 November", "14 November", "21 November", "28 November"],
+      labels: {
+        show: false,
+      },
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+    },
+    yaxis: {
+      show: false,
+    },
+  };
+
+  if (
+    document.getElementById("area-chart") &&
+    typeof ApexCharts !== "undefined"
+  ) {
+    const chart = new ApexCharts(
+      document.getElementById("area-chart"),
+      options
+    );
+    chart.render();
+  }
 });
