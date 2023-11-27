@@ -1174,6 +1174,10 @@ input[type="search"]:focus {
   aspect-ratio: 1 / 1;
 }
 
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
 .h-10 {
   height: 2.5rem;
 }
@@ -1286,6 +1290,10 @@ input[type="search"]:focus {
   width: 1.5rem;
 }
 
+.w-60 {
+  width: 15rem;
+}
+
 .w-64 {
   width: 16rem;
 }
@@ -1314,6 +1322,11 @@ input[type="search"]:focus {
 
 .min-w-\[4rem\] {
   min-width: 4rem;
+}
+
+.min-w-fit {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
 }
 
 .max-w-sm {
@@ -2039,6 +2052,11 @@ input[type="search"]:focus {
 .hover\:bg-gray-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gray-50:hover {

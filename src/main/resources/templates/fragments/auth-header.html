@@ -1,9 +1,6 @@
 <header th:fragment="auth-header">
   <nav class="flex justify-end items-center text-lg pt-4">
-    <ul
-      class="flex items-center gap-2 relative"
-      x-data="{ openNotifications: false }"
-    >
+    <ul class="flex items-center gap-2 relative">
       <li class="relative">
         <div
           class="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none"
@@ -22,34 +19,79 @@
         </div>
         <input type="search" name="search" id="search" placeholder="Search" />
       </li>
-      <li
-        class="p-1 rounded-full hover:bg-gray-100 transition-colors"
-        @click="openNotifications =! openNotifications"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-7 h-7 cursor-pointer"
+      <li x-data="{ openNotifications: false }" class="relative">
+        <div
+          class="p-1 rounded-full hover:bg-gray-100 transition-colors"
+          @click="openNotifications =! openNotifications"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-          />
-        </svg>
-      </li>
-      <div
-        x-show="openNotifications"
-        class="absolute right-0 p-2 z-10 rounded-md shadow-lg w-40 bg-gray-50 dark:bg-gray-900 dark:text-gray-100"
-        x-cloak
-      >
-        <div th:each="friendRequest : ${friendRequests}">
-          <p th:text="${friendRequest.id}"></p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-7 h-7 cursor-pointer"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+            />
+          </svg>
         </div>
-      </div>
+        <div
+          x-show="openNotifications"
+          class="absolute right-0 p-2 z-10 rounded-md shadow-lg w-60 min-w-fit aspect-video bg-gray-50 dark:bg-gray-900 dark:text-gray-100"
+          x-cloak
+        >
+          <h3 class="mb-2">Notifications</h3>
+          <hr />
+          <div
+            th:each="friendRequest : ${friendRequests}"
+            class="text-base p-2 flex items-center gap-4"
+          >
+            <div class="w-12 aspect-square">
+              <img
+                th:if="${friendRequest.sender.profileImage == null}"
+                src="img/user-placeholder.jpg"
+                alt=""
+                class="rounded-full"
+              />
+            </div>
+
+            <div class="flex flex-col">
+              <h3
+                class="font-semibold"
+                th:text="${friendRequest.sender.firstName + ' ' + friendRequest.sender.lastName}"
+              ></h3>
+              <form
+                action="/acceptFriendRequest"
+                method="post"
+                class="flex gap-2"
+              >
+                <input
+                  type="hidden"
+                  name="friendRequestId"
+                  th:value="${friendRequest.id}"
+                />
+                <input
+                  type="hidden"
+                  name="senderId"
+                  th:value="${friendRequest.sender.id}"
+                />
+                <button type="submit" class="button h-10">Accept</button>
+                <button
+                  type="button"
+                  class="button h-10 bg-gray-300 hover:bg-gray-400"
+                >
+                  Decline
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </li>
+
       <li class="p-1 rounded-full hover:bg-gray-100 transition-colors">
         <a href="/account" aria-label="Account">
           <svg

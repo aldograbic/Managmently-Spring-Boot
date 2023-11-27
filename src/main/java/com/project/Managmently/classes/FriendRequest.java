@@ -5,6 +5,7 @@ public class FriendRequest {
     private int senderId;
     private int receiverId;
     private boolean accepted;
+    private User sender;
     
     public FriendRequest() {}
 
@@ -46,5 +47,11 @@ public class FriendRequest {
         this.accepted = accepted;
     }
 
-    
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
 }

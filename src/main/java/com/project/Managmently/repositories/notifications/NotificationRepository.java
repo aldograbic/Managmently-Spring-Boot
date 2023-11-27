@@ -7,5 +7,6 @@ import com.project.Managmently.classes.FriendRequest;
 public interface NotificationRepository {
     
     List<FriendRequest> getAllFriendRequestsForUserById(int userId);
-    
+
+    public void updateAcceptedFriendRequest(int id);
 }

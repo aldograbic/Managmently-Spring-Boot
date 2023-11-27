@@ -18,8 +18,8 @@ public class JdbcTenantRepository implements TenantRepository {
 
     @Override
     public void insertTenant(Tenant tenant, int userId) {
-        String sql = "INSERT INTO user_tenants(first_name, last_name, lease_start_date, lease_end_date, rent_amount, security_deposit_amount, property_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, tenant.getFirstName(), tenant.getLastName(), tenant.getLeaseStartDate(), tenant.getLeaseEndDate(), tenant.getRentAmount(), tenant.getSecurityDepositAmount(), tenant.getPropertyId());
+        String sql = "INSERT INTO user_tenants(lease_start_date, lease_end_date, rent_amount, security_deposit_amount, property_id, tenant_id) VALUES (?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, tenant.getLeaseStartDate(), tenant.getLeaseEndDate(), tenant.getRentAmount(), tenant.getSecurityDepositAmount(), tenant.getPropertyId(), tenant.getTenantId());
 
         int tenantId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         String initialPaymentSql = "INSERT INTO user_payment_records(payment_date, payment_amount, status, tenant_id, user_id) VALUES (?, ?, ?, ?, ?)";
@@ -49,8 +49,8 @@ public class JdbcTenantRepository implements TenantRepository {
 
     @Override
     public void updateTenant(Tenant tenant) {
-        String sql = "UPDATE user_tenants SET first_name = ?, last_name = ?, city = ?, address = ?, phone_number = ?, email = ?, lease_start_date = ?, lease_end_date = ?, rent_amount = ?, security_deposit_amount = ? WHERE id = ?";
-        jdbcTemplate.update(sql, tenant.getFirstName(), tenant.getLastName(), tenant.getCity(), tenant.getAddress(), tenant.getPhoneNumber(), tenant.getEmail(), tenant.getLeaseStartDate(), tenant.getLeaseEndDate(), tenant.getRentAmount(), tenant.getSecurityDepositAmount(), tenant.getId());
+        String sql = "UPDATE user_tenants SET lease_start_date = ?, lease_end_date = ?, rent_amount = ?, security_deposit_amount = ? WHERE id = ?";
+        jdbcTemplate.update(sql, tenant.getLeaseStartDate(), tenant.getLeaseEndDate(), tenant.getRentAmount(), tenant.getSecurityDepositAmount(), tenant.getId());
     }
 
     @Override

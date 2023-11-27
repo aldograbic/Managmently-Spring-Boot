@@ -14,12 +14,6 @@ public class TenantRowMapper implements RowMapper<Tenant> {
     public Tenant mapRow(ResultSet rs, int rowNum) throws SQLException {
         Tenant tenant = new Tenant();
         tenant.setId(rs.getInt("id"));
-        tenant.setFirstName(rs.getString("first_name"));
-        tenant.setLastName(rs.getString("last_name"));
-        tenant.setCity(rs.getString("city"));
-        tenant.setAddress(rs.getString("address"));
-        tenant.setPhoneNumber(rs.getString("phone_number"));
-        tenant.setEmail(rs.getString("email"));
 
         Date leaseStartDateSql = rs.getDate("lease_start_date");
         if (leaseStartDateSql != null) {

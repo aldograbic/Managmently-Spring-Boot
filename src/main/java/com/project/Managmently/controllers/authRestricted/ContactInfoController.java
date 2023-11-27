@@ -8,16 +8,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.project.Managmently.classes.Contact;
 import com.project.Managmently.classes.User;
 import com.project.Managmently.repositories.contacts.ContactRepository;
+import com.project.Managmently.repositories.notifications.NotificationRepository;
 import com.project.Managmently.repositories.user.UserRepository;
 
 @Controller
@@ -28,6 +27,9 @@ public class ContactInfoController {
 
     @Autowired
     private ContactRepository contactRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
     
     @GetMapping("/contact-info")
     public String getContactInfoPage(Model model) {
@@ -37,29 +39,10 @@ public class ContactInfoController {
         User user = userRepository.findByUsername(username);
         model.addAttribute("user", user);
 
-        List<Contact> userContacts = contactRepository.getContactsForUserById(user.getId());
+        List<User> userContacts = contactRepository.getContactsForUserById(user.getId());
         model.addAttribute("userContacts", userContacts);
 
         return "authRestricted/contact-info";
-    }
-
-    @PostMapping("/insertContact")
-    public String insertContact(@ModelAttribute Contact contact,
-                                RedirectAttributes redirectAttributes) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        int userId = userRepository.findByUsername(username).getId();
-        contact.setUserId(userId);
-
-        try {
-            contactRepository.insertContact(contact);
-            redirectAttributes.addFlashAttribute("successMessage", "Contact successfully added.");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the contact. Please try again.");
-        }
-        
-        return "redirect:/contact-info";
     }
 
     @PostMapping("/deleteContact/{id}")
@@ -76,22 +59,9 @@ public class ContactInfoController {
         return "redirect:/contact-info";
     }
 
-    @PostMapping("/updateContact")
-    public String updateContact(@ModelAttribute Contact contact, RedirectAttributes redirectAttributes) {
-        try {
-            contactRepository.updateContact(contact);
-            redirectAttributes.addFlashAttribute("successMessage", "Contact successfully updated.");
-
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with updating the contact. Please try again.");
-        }
-
-        return "redirect:/contact-info";
-    }
-
     @GetMapping("/searchContacts")
     @ResponseBody
-    public List<Contact> searchContacts(@RequestParam String query) {
+    public List<User> searchContacts(@RequestParam String query) {
         return contactRepository.searchContacts(query);
     }
 
@@ -120,6 +90,27 @@ public class ContactInfoController {
 
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with sending the friend request. Please try again.");
+        }
+
+        return "redirect:/contact-info";
+    }
+
+    @PostMapping("/acceptFriendRequest")
+    public String acceptFriendRequest(@RequestParam("friendRequestId") int friendRequestId, @RequestParam("senderId") int senderId, RedirectAttributes redirectAttributes) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        int userId = userRepository.findByUsername(username).getId();
+
+        try {
+            notificationRepository.updateAcceptedFriendRequest(friendRequestId);
+
+            contactRepository.addNewContact(userId, senderId);
+            
+            redirectAttributes.addFlashAttribute("successMessage", "Contact successfully added.");
+            
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with adding the contact. Please try again.");
         }
 
         return "redirect:/contact-info";

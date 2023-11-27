@@ -92,4 +92,12 @@ public class JdbcUserRepository implements UserRepository {
         query = "%" + query + "%";
         return jdbcTemplate.query(sql, new UserRowMapper(roleRepository), query, query, query, query, userId);
     }
+
+    @Override
+    public User findById(int id) {
+        String sql = "SELECT id, username, password, first_name, last_name, city, address, phone_number, email, role_id, profile_image, email_verified, confirmation_token FROM users WHERE id = ?";
+        List<User> users = jdbcTemplate.query(sql, new UserRowMapper(roleRepository), id);
+
+        return users.isEmpty() ? null : users.get(0);
+    }
 }
