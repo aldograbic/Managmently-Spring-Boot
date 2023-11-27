@@ -77,8 +77,11 @@
                 class="text-3xl"
               ></p>
 
-              <p th:if="${user.role.name == 'ROLE_USER'}" class="text-blue-600">
-                USER
+              <p
+                th:if="${user.role.name == 'ROLE_TENANT'}"
+                class="text-blue-600"
+              >
+                TENANT
               </p>
               <p
                 th:if="${user.role.name == 'ROLE_OWNER'}"

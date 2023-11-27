@@ -20,18 +20,10 @@ function searchContacts() {
             <td class="px-6 py-4">${
               contact.firstName + " " + contact.lastName
             }</td>
+            <td class="px-6 py-4">${contact.username}</td>
             <td class="px-6 py-4">${contact.email}</td>
             <td class="px-6 py-4">${contact.phoneNumber}</td>
-            <td class="px-6 py-4">${contact.organization}</td>
-            <td class="px-6 py-4">${contact.jobTitle}</td>
-            <td class="px-6 py-4">${contact.notes}</td>
-            <td>
-              <svg @click="updateContact = true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                />
-              </svg>
-            </td>
+            <td class="px-6 py-4">${contact.role}</td>
             <td class="px-4 py-4" x-data="{ deleteContact: false }">
               <svg @click="deleteContact =!deleteContact" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -78,45 +70,6 @@ function searchContacts() {
             </td>
           `;
 
-          const editForm = document.createElement("form");
-          editForm.action = "/updateContact";
-          editForm.method = "post";
-
-          editForm.innerHTML = `
-            <td class="flex m-2">
-              <input type="hidden" name="id" value="${contact.id}" />
-              <input type="text" name="firstName" value="${contact.firstName}" id="firstName" class="h-10 mr-2" />
-              <input type="text" name="lastName" value="${contact.lastName}" id="lastName" class="h-10" />
-            </td>
-            <td>
-              <input type="email" name="email" value="${contact.email}" id="email" class="h-10" autocomplete="email" />
-            </td>
-            <td>
-              <input type="text" name="phoneNumber" value="${contact.phoneNumber}" id="phoneNumber" class="h-10" />
-            </td>
-            <td>
-              <input type="text" name="organization" value="${contact.organization}" id="organization" class="h-10" autocomplete="organization" />
-            </td>
-            <td>
-              <input type="text" name="jobTitle" value="${contact.jobTitle}" id="jobTitle" class="h-10" />
-            </td>
-            <td>
-              <input type="text" name="notes" value="${contact.notes}" id="notes" class="h-10" />
-            </td>
-            <td x-show="updateContact" x-cloak>
-              <button type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-              </button>
-            </td>
-            <td x-show="updateContact" x-cloak>
-              <svg @click="updateContact = false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </td>
-          `;
-
           row.appendChild(editForm);
 
           tbody.appendChild(row);
@@ -144,13 +97,17 @@ function searchUsers() {
         const li = document.createElement("li");
 
         li.innerHTML = `
-            <li class="flex justify-between items-center border rounded-lg px-6 py-4 text-lg">${
+            <li class="flex justify-between items-center border rounded-lg px-6 py-4 text-lg mb-2">${
               user.firstName + " " + user.lastName
             } 
               <div class="p-1 hover:bg-gray-100 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
-                </svg>
+                <form action="/sendFriendRequest/${user.id}" method="post">
+                  <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                    </svg>
+                  </button>
+                </form>
               </div>
             </li>
           `;

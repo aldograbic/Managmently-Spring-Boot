@@ -98,6 +98,30 @@ public class ContactInfoController {
     @GetMapping("/searchUsers")
     @ResponseBody
     public List<User> searchUsers(@RequestParam String query) {
-        return userRepository.searchUsers(query);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        int userId = userRepository.findByUsername(username).getId();
+
+        return userRepository.searchUsers(query, userId);
+    }
+
+    @PostMapping("/sendFriendRequest/{contactUserId}")
+    public String sendFriendRequest(@PathVariable("contactUserId") int contactUserId,
+                                    RedirectAttributes redirectAttributes) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        int userId = userRepository.findByUsername(username).getId();
+
+        try {
+            contactRepository.sendFriendRequest(userId, contactUserId);
+            redirectAttributes.addFlashAttribute("successMessage", "Friend request successfully sent.");
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with sending the friend request. Please try again.");
+        }
+
+        return "redirect:/contact-info";
     }
 }

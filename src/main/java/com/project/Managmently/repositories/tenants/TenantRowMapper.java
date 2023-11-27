@@ -2,8 +2,8 @@ package com.project.Managmently.repositories.tenants;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate; // Import LocalDate
-import java.sql.Date; // Import Date
+import java.time.LocalDate;
+import java.sql.Date;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.project.Managmently.classes.Tenant;

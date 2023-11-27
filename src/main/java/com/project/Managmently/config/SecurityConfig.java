@@ -32,7 +32,7 @@ public class SecurityConfig {
             .authorizeHttpRequests((auth) -> auth
                 .requestMatchers("/css/**", "/img/**", "/js/**").permitAll()
                 .requestMatchers("/", "/login", "/registration", "/confirm", "/processRegistration", "/processContactUs", "/contact").anonymous()
-                .requestMatchers("/dashboard", "/contact-info").hasAnyRole("USER", "OWNER", "AGENT")
+                .requestMatchers("/dashboard", "/contact-info").hasAnyRole("TENANT", "OWNER", "AGENT")
                 .requestMatchers("/properties", "/tenants").hasAnyRole("OWNER", "AGENT")
                 .requestMatchers("/payments").hasRole("OWNER")
                 .anyRequest().authenticated()

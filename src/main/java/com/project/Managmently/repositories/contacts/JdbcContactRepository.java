@@ -65,4 +65,11 @@ public class JdbcContactRepository implements ContactRepository {
         query = "%" + query + "%";
         return jdbcTemplate.query(sql, new ContactRowMapper(), query, query, query, query, query, query, query);
     }
+
+    @Override
+    public void sendFriendRequest(int userId, int contactUserId) {
+        String sql = "INSERT INTO friend_request(sender_id, receiver_id, accepted) " +
+            "VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, userId, contactUserId, false);
+    }
 }

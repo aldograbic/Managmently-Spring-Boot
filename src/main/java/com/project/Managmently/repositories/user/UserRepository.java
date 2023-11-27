@@ -22,5 +22,5 @@ public interface UserRepository {
 
     void updateEmailVerification(User user);
 
-    List<User> searchUsers(String query);
+    List<User> searchUsers(String query, int userId);
 }

@@ -1,6 +1,9 @@
 <header th:fragment="auth-header">
   <nav class="flex justify-end items-center text-lg pt-4">
-    <ul class="flex items-center gap-2">
+    <ul
+      class="flex items-center gap-2 relative"
+      x-data="{ openNotifications: false }"
+    >
       <li class="relative">
         <div
           class="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none"
@@ -19,7 +22,10 @@
         </div>
         <input type="search" name="search" id="search" placeholder="Search" />
       </li>
-      <li class="p-1 rounded-full hover:bg-gray-100 transition-colors">
+      <li
+        class="p-1 rounded-full hover:bg-gray-100 transition-colors"
+        @click="openNotifications =! openNotifications"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -35,6 +41,15 @@
           />
         </svg>
       </li>
+      <div
+        x-show="openNotifications"
+        class="absolute right-0 p-2 z-10 rounded-md shadow-lg w-40 bg-gray-50 dark:bg-gray-900 dark:text-gray-100"
+        x-cloak
+      >
+        <div th:each="friendRequest : ${friendRequests}">
+          <p th:text="${friendRequest.id}"></p>
+        </div>
+      </div>
       <li class="p-1 rounded-full hover:bg-gray-100 transition-colors">
         <a href="/account" aria-label="Account">
           <svg

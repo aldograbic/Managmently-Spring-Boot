@@ -108,7 +108,7 @@
                   have it saved in your contact list.
                 </p>
 
-                <div class="relative mt-6">
+                <div class="relative mt-6 mb-8">
                   <div
                     class="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none"
                   >
@@ -224,14 +224,10 @@
             <thead class="bg-gray-50 dark:bg-gray-900">
               <tr>
                 <th class="px-6 py-4 font-medium text-gray-500">Name</th>
+                <th class="px-6 py-4 font-medium text-gray-500">Username</th>
                 <th class="px-6 py-4 font-medium text-gray-500">E-mail</th>
                 <th class="px-6 py-4 font-medium text-gray-500">Phone</th>
-                <th class="px-6 py-4 font-medium text-gray-500">
-                  Organization
-                </th>
-                <th class="px-6 py-4 font-medium text-gray-500">Title</th>
-                <th class="px-6 py-4 font-medium text-gray-500">Notes</th>
-                <th></th>
+                <th class="px-6 py-4 font-medium text-gray-500">Role</th>
                 <th></th>
               </tr>
             </thead>
@@ -242,34 +238,16 @@
               <tr
                 th:each="contact : ${userContacts}"
                 class="hover:bg-gray-50 hover:dark:bg-gray-800 dark:text-gray-100"
-                x-show="!updateContact"
               >
                 <td
                   class="px-6 py-4"
                   th:text="${contact.firstName + ' ' + contact.lastName}"
                 ></td>
-                <td class="px-6 py-4" th:text="${contact.email}"></td>
+                <td class="px-6 py-4" th:text="${contact.username}"></td>
                 <td class="px-6 py-4" th:text="${contact.phoneNumber}"></td>
-                <td class="px-6 py-4" th:text="${contact.organization}"></td>
-                <td class="px-6 py-4" th:text="${contact.jobTitle}"></td>
-                <td class="px-6 py-4" th:text="${contact.notes}"></td>
-                <td>
-                  <svg
-                    @click="updateContact = true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6 cursor-pointer"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                    />
-                  </svg>
-                </td>
+                <td class="px-6 py-4" th:text="${contact.email}"></td>
+                <td class="px-6 py-4" th:text="${contact.phone}"></td>
+                <td class="px-6 py-4" th:text="${contact.role}"></td>
                 <td class="px-4 py-4" x-data="{ deleteContact: false }">
                   <svg
                     @click="deleteContact =!deleteContact"
@@ -382,114 +360,6 @@
                     </div>
                   </div>
                 </td>
-              </tr>
-
-              <tr
-                th:each="contact : ${userContacts}"
-                x-show="updateContact"
-                x-cloak
-              >
-                <form action="/updateContact" method="post">
-                  <td class="flex m-2">
-                    <input type="hidden" name="id" th:value="${contact.id}" />
-                    <input
-                      type="text"
-                      name="firstName"
-                      id="firstName"
-                      th:value="${contact.firstName}"
-                      class="h-10 mr-2"
-                    />
-                    <input
-                      type="text"
-                      name="lastName"
-                      id="lastName"
-                      th:value="${contact.lastName}"
-                      class="h-10"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      th:value="${contact.email}"
-                      class="h-10"
-                      autocomplete="email"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="phoneNumber"
-                      id="phoneNumber"
-                      th:value="${contact.phoneNumber}"
-                      class="h-10"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="organization"
-                      id="organization"
-                      th:value="${contact.organization}"
-                      class="h-10"
-                      autocomplete="organization"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="jobTitle"
-                      id="jobTitle"
-                      th:value="${contact.jobTitle}"
-                      class="h-10"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="notes"
-                      id="notes"
-                      th:value="${contact.notes}"
-                      class="h-10"
-                    />
-                  </td>
-                  <td x-show="updateContact" x-cloak>
-                    <button type="submit">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M4.5 12.75l6 6 9-13.5"
-                        />
-                      </svg>
-                    </button>
-                  </td>
-                  <td x-show="updateContact" x-cloak>
-                    <svg
-                      @click="updateContact = false"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      class="w-6 h-6 cursor-pointer"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </td>
-                </form>
               </tr>
             </tbody>
           </table>

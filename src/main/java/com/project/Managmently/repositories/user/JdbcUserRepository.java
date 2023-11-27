@@ -81,14 +81,15 @@ public class JdbcUserRepository implements UserRepository {
     }
 
     @Override
-    public List<User> searchUsers(String query) {
+    public List<User> searchUsers(String query, int userId) {
         String sql = "SELECT * FROM users " +
             "WHERE LOWER(username) LIKE LOWER(?) OR " +
             "LOWER(first_name) LIKE LOWER(?) OR " +
             "LOWER(last_name) LIKE LOWER(?) OR " +
-            "LOWER(email) LIKE LOWER(?)";
+            "LOWER(email) LIKE LOWER(?) " +
+            "AND id != ?";
 
         query = "%" + query + "%";
-        return jdbcTemplate.query(sql, new UserRowMapper(roleRepository), query, query, query, query);
+        return jdbcTemplate.query(sql, new UserRowMapper(roleRepository), query, query, query, query, userId);
     }
 }

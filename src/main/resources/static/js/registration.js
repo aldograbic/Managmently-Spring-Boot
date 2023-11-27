@@ -6,7 +6,6 @@ document
     validateUserType();
     validatePasswordMatch();
 
-    // Check if either validation failed and prevent form submission if needed
     if (createAccountBtn.disabled) {
       event.preventDefault();
     }

@@ -15,4 +15,6 @@ public interface ContactRepository {
     void updateContact(Contact contact);
 
     List<Contact> searchContacts(String query);
+
+    void sendFriendRequest(int userId, int contactUserId);
 }
