@@ -14,6 +14,7 @@ public class Tenant {
     private BigDecimal securityDepositAmount;
     private int propertyId;
     private int tenantId;
+    private User tenant;
 
     private List<PaymentRecord> paymentRecords = new ArrayList<>();
 
@@ -92,5 +93,13 @@ public class Tenant {
 
     public void setPaymentRecords(List<PaymentRecord> paymentRecords) {
         this.paymentRecords = paymentRecords;
+    }
+
+    public User getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(User tenant) {
+        this.tenant = tenant;
     }
 }

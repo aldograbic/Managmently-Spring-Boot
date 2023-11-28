@@ -7,8 +7,16 @@ import java.sql.Date;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.project.Managmently.classes.Tenant;
+import com.project.Managmently.classes.User;
+import com.project.Managmently.repositories.user.UserRepository;
 
 public class TenantRowMapper implements RowMapper<Tenant> {
+
+    private final UserRepository userRepository;
+
+    public TenantRowMapper(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public Tenant mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -31,6 +39,10 @@ public class TenantRowMapper implements RowMapper<Tenant> {
         tenant.setSecurityDepositAmount(rs.getBigDecimal("security_deposit_amount"));
         tenant.setPropertyId(rs.getInt("property_id"));
         tenant.setTenantId(rs.getInt("tenant_id"));
+
+        int tenantId = rs.getInt("tenant_id");
+        User userTenant = userRepository.findById(tenantId);
+        tenant.setTenant(userTenant);
 
         return tenant;
     }

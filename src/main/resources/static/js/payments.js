@@ -23,7 +23,9 @@ function searchPayments() {
           row.innerHTML = `
             <td class="px-6 py-4">${payment.id}</td>
             <td class="px-6 py-4">${
-              payment.tenant.firstName + " " + payment.tenant.lastName
+              payment.tenant.tenant.firstName +
+              " " +
+              payment.tenant.tenant.lastName
             }</td>
             <td class="px-6 py-4">${payment.paymentDate}</td>
             <td class="px-6 py-4">${formatAmount(payment.paymentAmount)}</td>

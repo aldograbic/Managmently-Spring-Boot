@@ -6,14 +6,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.project.Managmently.classes.Tenant;
+import com.project.Managmently.repositories.user.UserRepository;
 
 @Repository
 public class JdbcTenantRepository implements TenantRepository {
 
     private final JdbcTemplate jdbcTemplate;
+    private final UserRepository userRepository;
 
-    public JdbcTenantRepository(JdbcTemplate jdbcTemplate) {
+    public JdbcTenantRepository(JdbcTemplate jdbcTemplate, UserRepository userRepository) {
         this.jdbcTemplate = jdbcTemplate;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -38,13 +41,13 @@ public class JdbcTenantRepository implements TenantRepository {
     @Override
     public List<Tenant> getTenantsForUserByPropertyId(int propertyId) {
         String sql = "SELECT * FROM user_tenants WHERE property_id = ?";
-        return jdbcTemplate.query(sql, new TenantRowMapper(), propertyId);
+        return jdbcTemplate.query(sql, new TenantRowMapper(userRepository), propertyId);
     }
     
     @Override
     public Tenant getTenantById(int id) {
         String sql = "SELECT * FROM user_tenants where id = ?";
-        return jdbcTemplate.queryForObject(sql, new TenantRowMapper(), id);
+        return jdbcTemplate.queryForObject(sql, new TenantRowMapper(userRepository), id);
     }
 
     @Override
@@ -55,12 +58,9 @@ public class JdbcTenantRepository implements TenantRepository {
 
     @Override
     public List<Tenant> searchTenants(String query) {
-        String sql = "SELECT * FROM user_tenants " +
+        String sql = "SELECT * FROM user_tenants INNER JOIN users ON user_tenants.tenant_id = users.id " +
              "WHERE LOWER(first_name) LIKE LOWER(?) OR " +
              "LOWER(last_name) LIKE LOWER(?) OR " +
-             "LOWER(city) LIKE LOWER(?) OR " +
-             "LOWER(address) LIKE LOWER(?) OR " +
-             "LOWER(phone_number) LIKE LOWER(?) OR " +
              "LOWER(email) LIKE LOWER(?) OR " +
              "LOWER(lease_start_date) LIKE LOWER(?) OR " +
              "LOWER(lease_end_date) LIKE LOWER(?) OR " +
@@ -68,7 +68,7 @@ public class JdbcTenantRepository implements TenantRepository {
              "LOWER(security_deposit_amount) LIKE LOWER(?)";
 
         query = "%" + query + "%";
-        return jdbcTemplate.query(sql, new TenantRowMapper(), query, query, query, query, query, query, query, query, query, query);
+        return jdbcTemplate.query(sql, new TenantRowMapper(userRepository), query, query, query, query, query, query, query);
     }
 
     @Override

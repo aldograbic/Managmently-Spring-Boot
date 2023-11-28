@@ -18,8 +18,8 @@ function searchTenants() {
           card.innerHTML = `
                 <div class="space-y-4">
                   <div class="flex justify-between">
-                    <h3 class="text-xl">${tenant.firstName} ${
-            tenant.lastName
+                    <h3 class="text-xl">${tenant.tenant.firstName} ${
+            tenant.tenant.lastName
           }</h3>
                     <div class="flex gap-4" x-data="{ deleteTenant: false, updateTenant: false }">
                     <svg @click="updateTenant =! updateTenant" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer">
@@ -59,105 +59,7 @@ function searchTenants() {
                               name="id"
                               value=${tenant.id}
                             />
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="firstName"
-                                name="firstName"
-                                class="peer"
-                                placeholder=""
-                                value=${tenant.firstName}
-                              />
-                              <label
-                                for="firstName"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >First name</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="lastName"
-                                name="lastName"
-                                class="peer"
-                                placeholder=""
-                                value=${tenant.lastName}
-                              />
-                              <label
-                                for="lastName"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >Last name</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="city"
-                                name="city"
-                                class="peer"
-                                placeholder=""
-                                value=${tenant.city}
-                              />
-                              <label
-                                for="city"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >City</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="address"
-                                name="address"
-                                class="peer"
-                                placeholder=""
-                                autocomplete="street-address"
-                                value=${tenant.address}
-                                
-                              />
-                              <label
-                                for="address"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >Address</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                class="peer"
-                                placeholder=""
-                                value=${tenant.phoneNumber}
-                              />
-                              <label
-                                for="phoneNumber"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >Phone Number</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                class="peer"
-                                placeholder=""
-                                autocomplete="email"
-                                value=${tenant.email}
-                              />
-                              <label
-                                for="email"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >E-mail address</label
-                              >
-                            </div>
-
+                            
                             <div class="relative">
                               <input
                                 type="date"
@@ -309,7 +211,9 @@ function searchTenants() {
                           <div class="space-y-4">
                             <p>
                               Tenant Name: <span>${
-                                tenant.firstName + " " + tenant.lastName
+                                tenant.tenant.firstName +
+                                " " +
+                                tenant.tenant.lastName
                               }</span>
                             </p>
                             <p>

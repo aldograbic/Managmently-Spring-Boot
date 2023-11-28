@@ -319,7 +319,7 @@
               <div class="space-y-4">
                 <div class="flex justify-between">
                   <h3
-                    th:text="${tenant.firstName} + ' ' + ${tenant.lastName}"
+                    th:text="${tenant.tenant.firstName} + ' ' + ${tenant.tenant.lastName}"
                     class="text-xl dark:text-gray-100"
                   ></h3>
                   <div
@@ -416,105 +416,8 @@
                             <input
                               type="hidden"
                               name="id"
-                              th:value="${tenant.id}"
+                              th:value="${tenant.tenant.id}"
                             />
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="firstName"
-                                name="firstName"
-                                class="peer"
-                                placeholder=""
-                                th:value="${tenant.firstName}"
-                              />
-                              <label
-                                for="firstName"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >First name</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="lastName"
-                                name="lastName"
-                                class="peer"
-                                placeholder=""
-                                th:value="${tenant.lastName}"
-                              />
-                              <label
-                                for="lastName"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >Last name</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="city"
-                                name="city"
-                                class="peer"
-                                placeholder=""
-                                th:value="${tenant.city}"
-                              />
-                              <label
-                                for="city"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >City</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="address"
-                                name="address"
-                                class="peer"
-                                placeholder=""
-                                th:value="${tenant.address}"
-                                autocomplete="street-address"
-                              />
-                              <label
-                                for="address"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >Address</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="text"
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                class="peer"
-                                placeholder=""
-                                th:value="${tenant.phoneNumber}"
-                              />
-                              <label
-                                for="phoneNumber"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >Phone Number</label
-                              >
-                            </div>
-
-                            <div class="relative">
-                              <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                class="peer"
-                                placeholder=""
-                                th:value="${tenant.email}"
-                                autocomplete="email"
-                              />
-                              <label
-                                for="email"
-                                class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                                >E-mail address</label
-                              >
-                            </div>
 
                             <div class="relative">
                               <input
@@ -668,7 +571,7 @@
                             <p>
                               Tenant Name:
                               <span
-                                th:text="${tenant.firstName + ' ' + tenant.lastName}"
+                                th:text="${tenant.tenant.firstName + ' ' + tenant.tenant.lastName}"
                               ></span>
                             </p>
                             <p>

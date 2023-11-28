@@ -38,7 +38,7 @@ public class JdbcPaymentRepository implements PaymentRepository {
 
     @Override
     public List<PaymentRecord> searchPayments(String query) {
-        String sql = "SELECT * FROM user_payment_records INNER JOIN user_tenants ON user_payment_records.tenant_id = user_tenants.id " +
+        String sql = "SELECT * FROM user_payment_records INNER JOIN users ON user_payment_records.tenant_id = users.id " +
              "WHERE LOWER(payment_amount) LIKE LOWER(?) OR " +
              "LOWER(payment_date) LIKE LOWER(?) OR " +
              "LOWER(status) LIKE LOWER(?) OR " +
