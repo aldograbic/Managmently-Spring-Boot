@@ -246,7 +246,17 @@
                 <td class="px-6 py-4" th:text="${contact.username}"></td>
                 <td class="px-6 py-4" th:text="${contact.email}"></td>
                 <td class="px-6 py-4" th:text="${contact.phoneNumber}"></td>
-                <td class="px-6 py-4" th:text="${contact.role.name}"></td>
+                <td class="px-6 py-4">
+                  <span th:if="${contact.role.name == 'ROLE_TENANT'}"
+                    >TENANT</span
+                  >
+                  <span th:if="${contact.role.name == 'ROLE_AGENT'}"
+                    >AGENT</span
+                  >
+                  <span th:if="${contact.role.name == 'ROLE_OWNER'}"
+                    >OWNER</span
+                  >
+                </td>
                 <td class="px-4 py-4" x-data="{ deleteContact: false }">
                   <svg
                     @click="deleteContact =!deleteContact"

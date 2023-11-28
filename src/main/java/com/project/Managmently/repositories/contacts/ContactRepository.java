@@ -15,4 +15,6 @@ public interface ContactRepository {
     List<User> searchContacts(String query);
 
     void sendFriendRequest(int userId, int contactUserId);
+
+    List<User> getTenantsForUserById(int userId);
 }

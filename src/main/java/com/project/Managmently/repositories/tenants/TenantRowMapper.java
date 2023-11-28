@@ -30,6 +30,7 @@ public class TenantRowMapper implements RowMapper<Tenant> {
         tenant.setRentAmount(rs.getBigDecimal("rent_amount"));
         tenant.setSecurityDepositAmount(rs.getBigDecimal("security_deposit_amount"));
         tenant.setPropertyId(rs.getInt("property_id"));
+        tenant.setTenantId(rs.getInt("tenant_id"));
 
         return tenant;
     }

@@ -59,4 +59,12 @@ public class JdbcContactRepository implements ContactRepository {
             "VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, userId, contactUserId, false);
     }
+
+    @Override
+    public List<User> getTenantsForUserById(int userId) {
+        String sql = "SELECT users.* FROM users " +
+                     "JOIN user_contacts ON (user_contacts.user_id = users.id OR user_contacts.contact_id = users.id) " +
+                     "WHERE (user_contacts.user_id = ? OR user_contacts.contact_id = ?) AND users.id != ? AND users.role_id = 1";
+        return jdbcTemplate.query(sql, new UserRowMapper(roleRepository), userId, userId, userId);
+    }
 }

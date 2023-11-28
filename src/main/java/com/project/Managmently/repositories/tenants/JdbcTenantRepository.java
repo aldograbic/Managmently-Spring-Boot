@@ -71,12 +71,6 @@ public class JdbcTenantRepository implements TenantRepository {
         return jdbcTemplate.query(sql, new TenantRowMapper(), query, query, query, query, query, query, query, query, query, query);
     }
 
-    // @Override
-    // public List<Tenant> getAllTenants() {
-    //     String sql = "SELECT * FROM user_tenants";
-    //     return jdbcTemplate.query(sql, new TenantRowMapper());
-    // }
-
     @Override
     public int getTenantCountForUserById(int userId) {
         String sql = "SELECT COUNT(*) FROM user_tenants INNER JOIN user_properties ON user_tenants.property_id = user_properties.id WHERE user_id = ?";

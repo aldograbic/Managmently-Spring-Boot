@@ -21,6 +21,7 @@ import com.project.Managmently.classes.PaymentRecord;
 import com.project.Managmently.classes.Property;
 import com.project.Managmently.classes.Tenant;
 import com.project.Managmently.classes.User;
+import com.project.Managmently.repositories.contacts.ContactRepository;
 import com.project.Managmently.repositories.properties.PropertyRepository;
 import com.project.Managmently.repositories.tenants.TenantRepository;
 import com.project.Managmently.repositories.user.UserRepository;
@@ -36,6 +37,9 @@ public class TenantsController {
 
     @Autowired
     private PropertyRepository propertyRepository;
+
+    @Autowired
+    private ContactRepository contactRepository;
     
     @GetMapping("/tenants")
     public String getTenantsPage(Model model) {
@@ -48,6 +52,9 @@ public class TenantsController {
         List<Property> properties = propertyRepository.getPropertiesForUserById(user.getId());
         model.addAttribute("properties", properties);
 
+        List<User> listOfTenants = contactRepository.getTenantsForUserById(user.getId());
+        model.addAttribute("listOfTenants", listOfTenants);
+
         Map<String, List<Tenant>> tenantsByProperty = properties.stream()
             .collect(Collectors.toMap(
                 Property::getName,
@@ -57,13 +64,13 @@ public class TenantsController {
             ));
         model.addAttribute("tenantsByProperty", tenantsByProperty);
 
-
         return "authRestricted/tenants";
     }
 
     @PostMapping("/insertTenant")
     public String insertTenant(@ModelAttribute Tenant tenant,
                             @RequestParam("property") String propertyName,
+                            @RequestParam("tenant") int tenantId,
                             RedirectAttributes redirectAttributes) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -72,6 +79,7 @@ public class TenantsController {
 
         int propertyId = propertyRepository.getPropertyIdByName(propertyName);
         tenant.setPropertyId(propertyId);
+        tenant.setTenantId(tenantId);
 
         try {
             PaymentRecord initialPayment = new PaymentRecord(tenant.getLeaseStartDate(), tenant.getRentAmount(), "Pending", tenant.getId(), userId);

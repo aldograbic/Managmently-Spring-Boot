@@ -110,32 +110,25 @@
 
                 <form th:action="@{/insertTenant}" method="post" class="mt-5">
                   <div class="relative mb-4">
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
+                    <select
+                      id="tenant"
+                      name="tenant"
                       class="peer"
                       placeholder=""
-                    />
-                    <label
-                      for="firstName"
-                      class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                      >First name</label
                     >
-                  </div>
-
-                  <div class="relative mb-4">
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      class="peer"
-                      placeholder=""
-                    />
+                      <option value="" selected disabled>
+                        Select a Tenant
+                      </option>
+                      <option
+                        th:each="tenant : ${listOfTenants}"
+                        th:value="${tenant.id}"
+                        th:text="${tenant.firstName + ' ' + tenant.lastName}"
+                      ></option>
+                    </select>
                     <label
-                      for="lastName"
+                      for="tenant"
                       class="peer-focus:px-2 peer-focus:text-blue-700 peer-focus:dark:text-blue-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                      >Last name</label
+                      >Tenant</label
                     >
                   </div>
 
