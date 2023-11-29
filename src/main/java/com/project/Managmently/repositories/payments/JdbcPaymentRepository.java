@@ -109,4 +109,9 @@ public class JdbcPaymentRepository implements PaymentRepository {
         return jdbcTemplate.queryForObject(sql, Integer.class, userId);
     }
 
+    @Override
+    public List<PaymentRecord> getPaymentRecordsForTenantByUserId(int userId) {
+        String sql = "SELECT * FROM user_payment_records WHERE tenant_id = ?";
+        return jdbcTemplate.query(sql, new PaymentRowMapper(tenantRepository), userId);
+    }
 }

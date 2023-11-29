@@ -958,6 +958,14 @@ input[type="search"]:focus {
   bottom: 0px;
 }
 
+.-top-0 {
+  top: -0px;
+}
+
+.-top-0\.5 {
+  top: -0.125rem;
+}
+
 .bottom-0 {
   bottom: 0px;
 }
@@ -984,6 +992,10 @@ input[type="search"]:focus {
 
 .right-0 {
   right: 0px;
+}
+
+.start-5 {
+  inset-inline-start: 1.25rem;
 }
 
 .z-10 {
@@ -1544,6 +1556,10 @@ input[type="search"]:focus {
   border-width: 1px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
 .border-t {
   border-top-width: 1px;
 }
@@ -1566,6 +1582,11 @@ input[type="search"]:focus {
 .border-red-500 {
   --tw-border-opacity: 1;
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .bg-blue-100\/75 {
@@ -2219,6 +2240,11 @@ input[type="search"]:focus {
 :is(.dark .dark\:border-gray-700) {
   --tw-border-opacity: 1;
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
+}
+
+:is(.dark .dark\:border-gray-900) {
+  --tw-border-opacity: 1;
+  border-color: rgb(17 24 39 / var(--tw-border-opacity));
 }
 
 :is(.dark .dark\:bg-gray-700) {

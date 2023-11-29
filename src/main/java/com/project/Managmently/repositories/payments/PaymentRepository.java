@@ -20,4 +20,6 @@ public interface PaymentRepository {
     BigDecimal getCompletedPaymentsCountForUserInPreviousMonth(int userId);
 
     int getPaymentsCountForUserById(int userId);
+
+    List<PaymentRecord> getPaymentRecordsForTenantByUserId(int userId);
 }
