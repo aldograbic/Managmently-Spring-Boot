@@ -3,6 +3,7 @@ package com.project.Managmently.repositories.tenants;
 import java.util.List;
 
 import com.project.Managmently.classes.Tenant;
+import com.project.Managmently.classes.User;
 
 public interface TenantRepository {
     
@@ -21,4 +22,8 @@ public interface TenantRepository {
     // List<Tenant> getAllTenants();
 
     int getTenantCountForUserById(int userId);
+
+    String getPropertyNameByTenantId(int tenantId);
+
+    User getPropertyOwnerByTenantId(int tenantId);
 }

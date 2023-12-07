@@ -44,6 +44,12 @@ public class DashboardController {
         if(user.getRoleId() == 1) {
             List<PaymentRecord> paymentRecordsForTenant = paymentRepository.getPaymentRecordsForTenantByUserId(user.getId());
             model.addAttribute("paymentRecordsForTenant", paymentRecordsForTenant);
+
+            String propertyName = tenantRepository.getPropertyNameByTenantId(user.getId());
+            model.addAttribute("propertyName", propertyName);
+
+            User propertyOwner = tenantRepository.getPropertyOwnerByTenantId(user.getId());
+            model.addAttribute("propertyOwner", propertyOwner);
         }
 
         else if(user.getRoleId() == 2) {

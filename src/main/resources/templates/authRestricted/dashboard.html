@@ -281,7 +281,7 @@
                   class="text-base font-normal text-gray-600 dark:text-gray-400"
                 >
                   Payments for:
-                  <span class="font-semibold">// VILLA MONACO</span>
+                  <span class="font-semibold" th:text="${propertyName}"></span>
                 </h3>
                 <div
                   class="grid place-items-center rounded-full w-10 h-10 hover:bg-gray-100 cursor-pointer"
@@ -503,21 +503,36 @@
               </div>
             </div>
           </div>
-          <div class="rounded-lg shadow-lg border p-4">
-            <h3 class="text-base font-normal text-gray-600 dark:text-gray-400">
+          <div
+            class="rounded-lg shadow-lg border p-4 flex justify-between flex-col"
+          >
+            <h3
+              class="text-base font-normal text-gray-600 dark:text-gray-400 mb-4"
+            >
               Property Owner
             </h3>
             <div class="flex gap-4 items-center">
               <img
                 src="img/user-placeholder.jpg"
                 alt="Property Owner image"
-                class="rounded-full w-24"
+                class="rounded-full w-48"
               />
               <div>
-                <p>//ime i prezime</p>
-                <p>//email</p>
+                <p
+                  th:text="${propertyOwner.firstName + ' ' + propertyOwner.lastName}"
+                  class="text-3xl mb-2"
+                ></p>
+                <p th:text="${propertyOwner.email}" class="text-gray-600"></p>
+                <p
+                  th:text="${propertyOwner.address + ', ' + propertyOwner.city}"
+                  class="text-gray-600"
+                ></p>
               </div>
             </div>
+            <button
+              class="button"
+              th:text="${'Send ' + propertyOwner.firstName + ' a message'}"
+            ></button>
           </div>
         </div>
       </div>

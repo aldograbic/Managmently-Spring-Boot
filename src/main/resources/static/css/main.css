@@ -1531,6 +1531,10 @@ input[type="search"]:focus {
   border-color: rgb(243 244 246 / var(--tw-divide-opacity));
 }
 
+.justify-self-end {
+  justify-self: end;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }

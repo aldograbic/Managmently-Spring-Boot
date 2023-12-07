@@ -6,17 +6,22 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.project.Managmently.classes.Tenant;
+import com.project.Managmently.classes.User;
+import com.project.Managmently.repositories.roles.RoleRepository;
 import com.project.Managmently.repositories.user.UserRepository;
+import com.project.Managmently.repositories.user.UserRowMapper;
 
 @Repository
 public class JdbcTenantRepository implements TenantRepository {
 
     private final JdbcTemplate jdbcTemplate;
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    public JdbcTenantRepository(JdbcTemplate jdbcTemplate, UserRepository userRepository) {
+    public JdbcTenantRepository(JdbcTemplate jdbcTemplate, UserRepository userRepository, RoleRepository roleRepository) {
         this.jdbcTemplate = jdbcTemplate;
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -75,5 +80,24 @@ public class JdbcTenantRepository implements TenantRepository {
     public int getTenantCountForUserById(int userId) {
         String sql = "SELECT COUNT(*) FROM user_tenants INNER JOIN user_properties ON user_tenants.property_id = user_properties.id WHERE user_id = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, userId);
+    }
+
+    @Override
+    public String getPropertyNameByTenantId(int tenantId) {
+        String sql = "SELECT user_properties.name FROM user_tenants " +
+                "INNER JOIN user_properties ON user_tenants.property_id = user_properties.id " +
+                "WHERE user_tenants.tenant_id = ?";
+        return jdbcTemplate.queryForObject(sql, String.class, tenantId);
+    }
+
+    @Override
+    public User getPropertyOwnerByTenantId(int tenantId) {
+        String sql = "SELECT * " +
+                    "FROM user_tenants ut " +
+                    "JOIN user_properties up ON ut.property_id = up.id " +
+                    "JOIN users u ON up.user_id = u.id " +
+                    "WHERE ut.tenant_id = ?";
+        
+        return jdbcTemplate.queryForObject(sql, new UserRowMapper(roleRepository), tenantId);
     }
 }
