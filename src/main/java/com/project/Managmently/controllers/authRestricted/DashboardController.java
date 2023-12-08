@@ -10,9 +10,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.Managmently.classes.Message;
 import com.project.Managmently.classes.PaymentRecord;
 import com.project.Managmently.classes.User;
+import com.project.Managmently.config.EmailService;
 import com.project.Managmently.repositories.payments.PaymentRepository;
 import com.project.Managmently.repositories.properties.PropertyRepository;
 import com.project.Managmently.repositories.tenants.TenantRepository;
@@ -32,6 +37,9 @@ public class DashboardController {
 
     @Autowired
     private TenantRepository tenantRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping("/dashboard")
     public String getDashboardPage(Model model) {
@@ -81,5 +89,25 @@ public class DashboardController {
         }
         
         return "authRestricted/dashboard";
+    }
+
+    @PostMapping("/sendMessageToPropertyOwner")
+    public String sendMessageToPropertyOwner(@ModelAttribute Message message, RedirectAttributes redirectAttributes) {
+
+        User sender = userRepository.findById(message.getSenderId());
+        User receiver = userRepository.findById(message.getReceiverId());
+
+        try {
+            
+            emailService.sendMessage(receiver.getEmail(), "New contact message from " + sender.getFirstName() + " " + sender.getLastName(), "User e-mail: " + sender.getEmail() + "\nMessage: " + message);
+
+            redirectAttributes.addFlashAttribute("successMessage", "Your message has been submitted successfully.");
+
+         } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "There was an issue with sending your message. Please try again.");
+            return "redirect:/dashboard";
+         }
+         
+         return "redirect:/dashboard";
     }
 }
