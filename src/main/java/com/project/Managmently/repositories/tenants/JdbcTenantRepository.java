@@ -29,6 +29,7 @@ public class JdbcTenantRepository implements TenantRepository {
         String sql = "INSERT INTO user_tenants(lease_start_date, lease_end_date, rent_amount, security_deposit_amount, property_id, tenant_id) VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, tenant.getLeaseStartDate(), tenant.getLeaseEndDate(), tenant.getRentAmount(), tenant.getSecurityDepositAmount(), tenant.getPropertyId(), tenant.getTenantId());
 
+        @SuppressWarnings("null")
         int tenantId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         String initialPaymentSql = "INSERT INTO user_payment_records(payment_date, payment_amount, status, tenant_id, user_id) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(initialPaymentSql, tenant.getLeaseStartDate(), tenant.getRentAmount(), "Pending", tenantId, userId);

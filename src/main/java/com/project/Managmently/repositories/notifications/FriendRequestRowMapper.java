@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.lang.NonNull;
 
 import com.project.Managmently.classes.FriendRequest;
 import com.project.Managmently.classes.User;
@@ -18,7 +19,7 @@ public class FriendRequestRowMapper implements RowMapper<FriendRequest> {
     }
 
     @Override
-    public FriendRequest mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public FriendRequest mapRow(@NonNull ResultSet rs, int rowNum) throws SQLException {
         FriendRequest friendRequest = new FriendRequest();
         friendRequest.setId(rs.getInt("id"));
         friendRequest.setSenderId(rs.getInt("sender_id"));

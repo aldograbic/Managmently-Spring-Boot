@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.sql.Date;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.lang.NonNull;
 
 import com.project.Managmently.classes.Tenant;
 import com.project.Managmently.classes.User;
@@ -19,7 +20,7 @@ public class TenantRowMapper implements RowMapper<Tenant> {
     }
 
     @Override
-    public Tenant mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public Tenant mapRow(@NonNull ResultSet rs, int rowNum) throws SQLException {
         Tenant tenant = new Tenant();
         tenant.setId(rs.getInt("id"));
 

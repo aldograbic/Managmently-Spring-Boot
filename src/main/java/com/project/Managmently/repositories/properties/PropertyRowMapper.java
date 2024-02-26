@@ -4,13 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.lang.NonNull;
 
 import com.project.Managmently.classes.Property;
 
 public class PropertyRowMapper implements RowMapper<Property> {
 
     @Override
-    public Property mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public Property mapRow(@NonNull ResultSet rs, int rowNum) throws SQLException {
         Property property = new Property();
         property.setId(rs.getInt("id"));
         property.setName(rs.getString("name"));

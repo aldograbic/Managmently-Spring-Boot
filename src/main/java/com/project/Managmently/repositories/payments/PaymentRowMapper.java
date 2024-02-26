@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.lang.NonNull;
 
 import com.project.Managmently.classes.PaymentRecord;
 import com.project.Managmently.classes.Tenant;
@@ -20,7 +21,7 @@ public class PaymentRowMapper implements RowMapper<PaymentRecord> {
     }
 
     @Override
-    public PaymentRecord mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public PaymentRecord mapRow(@NonNull ResultSet rs, int rowNum) throws SQLException {
         PaymentRecord paymentRecord = new PaymentRecord();
         paymentRecord.setId(rs.getInt("id"));
 

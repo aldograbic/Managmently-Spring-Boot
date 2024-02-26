@@ -70,7 +70,7 @@
       </div>
 
       <div class="content-regular md:mb-40">
-        <div class="flex items-center md:flex-row gap-8 md:mt-40">
+        <div class="md:flex items-center md:flex-row gap-8 mt-16 md:mt-40">
           <div class="flex flex-col gap-8 text-center md:text-left">
             <p class="text-3xl md:text-6xl">
               Discover the Future of
@@ -96,7 +96,7 @@
           <h1>
             Join thousands of property managers who trust Managmently for:
           </h1>
-          <div class="grid grid-cols-3 gap-8 flex-1 justify-items-center">
+          <div class="grid md:grid-cols-3 gap-8 flex-1 justify-items-center">
             <div
               class="flex flex-col border items-center h-80 rounded-lg aspect-square p-4 justify-around shadow-lg"
             >
@@ -189,7 +189,7 @@
           </div>
         </div>
 
-        <div id="features" class="md:mt-40 space-y-12 relative">
+        <div id="features" class="md:mt-40 mt-16 space-y-12 relative">
           <h1 class="text-center">Our Powerful Tools in Action</h1>
           <img
             src="img/bar-chart.svg"
@@ -323,7 +323,7 @@
           </div>
         </div>
 
-        <div class="text-center md:mt-40 relative">
+        <div class="text-center mt-16 md:mt-40 relative">
           <h1>Don't just take our word for it. Hear what our clients say:</h1>
           <img
             src="img/star.svg"
@@ -333,7 +333,9 @@
             x-intersect="shaken = true"
             :class="{ 'rotate': shaken }"
           />
-          <div class="grid grid-cols-3 justify-items-center">
+          <div
+            class="grid md:grid-cols-3 justify-items-center space-y-4 md:space-y-0"
+          >
             <div
               class="flex flex-col items-center border h-80 rounded-lg aspect-square p-4 text-lg justify-around shadow-lg"
             >
@@ -649,13 +651,13 @@
             </div>
           </div>
         </div>
-        <div class="flex items-center md:flex-row gap-8 md:mt-40">
+        <div class="md:flex items-center md:flex-row gap-8 md:mt-40 mt-16">
           <img
             src="img/contact-us-index-illustration.svg"
             alt="Contact Us illustration"
-            class="w-1/2"
+            class="w-full md:w-1/2"
           />
-          <div class="flex flex-col text-center md:text-left text-3xl">
+          <div class="flex flex-col text-3xl">
             <p class="font-semibold leading-relaxed">
               Have questions or need assistance?<br />Reach out to us - we're
               here to help!

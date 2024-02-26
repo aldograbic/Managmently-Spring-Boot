@@ -12,7 +12,7 @@ public interface ContactRepository {
 
     List<User> getContactsForUserById(int userId);
 
-    List<User> searchContacts(String query);
+    List<User> searchContacts(String query, int userId);
 
     void sendFriendRequest(int userId, int contactUserId);
 

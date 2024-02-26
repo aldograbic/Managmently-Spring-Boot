@@ -1,16 +1,12 @@
 package com.project.Managmently.repositories.payments;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.project.Managmently.classes.PaymentRecord;
-import com.project.Managmently.classes.Tenant;
 import com.project.Managmently.repositories.tenants.TenantRepository;
 
 @Repository

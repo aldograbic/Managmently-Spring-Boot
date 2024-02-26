@@ -42,8 +42,8 @@ public class JdbcContactRepository implements ContactRepository {
     }
     
     @Override
-    public List<User> searchContacts(String query) {
-        String sql = "SELECT * FROM user_contacts " +
+    public List<User> searchContacts(String query, int userId) {
+        String sql = "SELECT * FROM user_contacts INNER JOIN users ON user_contacts.user_id = users.id " +
              "WHERE LOWER(first_name) LIKE LOWER(?) OR " +
              "LOWER(last_name) LIKE LOWER(?) OR " +
              "LOWER(email) LIKE LOWER(?) OR " +

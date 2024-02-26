@@ -62,7 +62,12 @@ public class ContactInfoController {
     @GetMapping("/searchContacts")
     @ResponseBody
     public List<User> searchContacts(@RequestParam String query) {
-        return contactRepository.searchContacts(query);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        int userId = userRepository.findByUsername(username).getId();
+        
+        return contactRepository.searchContacts(query, userId);
     }
 
     @GetMapping("/searchUsers")
