@@ -15,7 +15,7 @@ function searchProperties() {
 
       if (data.length === 0) {
         propertiesContainer.innerHTML =
-          '<p class="text-center py-4">No results found</p>';
+          '<p class="text-center mx-auto col-span-3 py-4">No results found</p>';
       } else {
         data.forEach((property) => {
           const card = document.createElement("div");

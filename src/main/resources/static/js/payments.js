@@ -40,7 +40,7 @@ function searchPayments() {
             </td>
             <form action="/updatePaymentStatus/${payment.id}" method="post">
             <td class="px-6" x-show="statusSelect" x-cloak>
-              <select id="status" name="status" class="w-fit h-10 grid place-content-center p-0 pl-2">
+              <select name="status" class="w-fit h-10 grid place-content-center p-0 pl-2">
                 <option
                   th:selected="${payment.status == "Pending"}"
                   value="Pending"
@@ -121,6 +121,7 @@ function searchPayments() {
 function exportToPDF() {
   const { jsPDF } = window.jspdf;
   var doc = new jsPDF();
+  doc.setFontSize(10);
   doc.text("Payments Table", 20, 10);
 
   var rows = document
@@ -135,13 +136,19 @@ function exportToPDF() {
     var rowData = [];
 
     for (var j = 0; j < cols.length; j++) {
-      var cellData = cols[j].textContent;
-
-      if (j === 3) {
-        totalAmount += parseFloat(cellData.replace(/[^\d.]/g, "")) || 0;
+      var cellData = "";
+      if (cols[j].querySelector("select")) {
+        cellData =
+          cols[j].querySelector("select").selectedOptions[0].textContent;
+      } else {
+        cellData = cols[j].textContent;
       }
 
-      rowData.push(cellData);
+      if (j === 3) {
+        totalAmount += parseFloat(cellData.replace(/[^\d.-]/g, "")) || 0;
+      }
+
+      rowData.push(cellData.trim());
     }
 
     doc.text(20, 20 + i * 10, rowData.join(" | "));
