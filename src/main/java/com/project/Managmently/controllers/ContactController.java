@@ -1,6 +1,7 @@
 package com.project.Managmently.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,9 @@ public class ContactController {
 
     @Autowired
     private EmailService emailService;
+
+    @Value("${spring.mail.username}")
+    private String ownerEmail;
     
     @GetMapping("/contact")
     public String getContactPage() {
@@ -32,7 +36,7 @@ public class ContactController {
 
          try {
             userRepository.contact(name, email, message);
-            emailService.sendMessage("managmently@gmail.com", "New contact message from " + name, "User e-mail: " + email + "\nMessage: " + message);
+            emailService.sendMessage(ownerEmail, "New contact message from " + name, "User e-mail: " + email + "\nMessage: " + message);
 
             redirectAttributes.addFlashAttribute("successMessage", "Your message has been submitted successfully.");
 
