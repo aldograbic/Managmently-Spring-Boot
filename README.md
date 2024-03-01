@@ -2,17 +2,15 @@
 
 SaaS web aplikacija za upravljanje nekretninama.
 
-
 ## Značajke
 
 - Light/dark mode toggle
-- Autentikacija i autorizacija po 3 role: Customer, Real Estate Agent, Property Owner
+- Autentikacija i autorizacija po 3 role: Tenant, Real Estate Agent, Property Owner
 - Odabir plana koji sadrže određene značajke
 - Dashboard - pregled bitnih informacija određenom korisniku
 - Pregled svih spremljenih kontakata
 - CRUD nekretnina, uvid u stanare i popunjenost nekretnine te vremena uplata
 - Uređivanje i uvid korisničkog računa, mijenjanje korisničkih postavki
-
 
 ## Napravljeno uz pomoć
 
