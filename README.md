@@ -1,4 +1,4 @@
-# Managmently
+# Managmently [WiP]
 
 SaaS web aplikacija za upravljanje nekretninama.
 
